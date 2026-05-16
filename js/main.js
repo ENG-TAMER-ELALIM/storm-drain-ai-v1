@@ -37,4 +37,27 @@ calculateBtn.addEventListener("click", function () {
 
     console.log("Manning:", manning);
 
+    // CALCULATE FLOW
+
+const flow =
+    calculateFlow(
+        rainfall,
+        area,
+        runoff
+    );
+
+
+// PRINT FLOW
+
+console.log("Flow:", flow);
+
+
+// DISPLAY RESULT
+
+document.getElementById("flowResult")
+.innerText =
+flow.toFixed(3) + " m³/s";
+
 });
+
+
