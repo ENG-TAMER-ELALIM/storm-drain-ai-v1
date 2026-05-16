@@ -1,1 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Storm Drain AI V1</title>
+
+    <!-- CSS FILE -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div class="logo-section">
+                <h1>Storm Drain AI</h1>
+                <p>Smart Stormwater Design Platform</p>
+            </div>
+
+            <div class="status-section">
+                <span class="status-badge">SYSTEM ONLINE</span>
+            </div>
+
+        </header>
+
+        <!-- MAIN GRID -->
+        <div class="main-grid">
+
+            <!-- LEFT PANEL -->
+            <section class="input-panel">
+
+                <h2>Project Inputs</h2>
+
+                <!-- INPUT GROUP -->
+                <div class="input-group">
+
+                    <label>Rainfall Intensity (mm/hr)</label>
+                    <input type="number" id="rainfall">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Catchment Area (hectare)</label>
+                    <input type="number" id="area">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Runoff Coefficient</label>
+                    <input type="number" id="runoff">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Ground Slope (%)</label>
+                    <input type="number" id="slope">
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Manning Coefficient</label>
+                    <input type="number" id="manning">
+
+                </div>
+
+                <!-- BUTTON -->
+                <button id="calculateBtn">
+                    Run Hydraulic Analysis
+                </button>
+
+            </section>
+
+            <!-- RIGHT PANEL -->
+            <section class="output-panel">
+
+                <!-- RESULTS -->
+                <div class="results-card">
+
+                    <h2>Hydraulic Results</h2>
+
+                    <div class="result-item">
+                        <span>Flow Rate</span>
+                        <span id="flowResult">--</span>
+                    </div>
+
+                    <div class="result-item">
+                        <span>Pipe Diameter</span>
+                        <span id="diameterResult">--</span>
+                    </div>
+
+                    <div class="result-item">
+                        <span>Manholes</span>
+                        <span id="manholeResult">--</span>
+                    </div>
+
+                    <div class="result-item">
+                        <span>Catch Basins</span>
+                        <span id="basinResult">--</span>
+                    </div>
+
+                </div>
+
+                <!-- RECOMMENDATIONS -->
+                <div class="recommendation-card">
+
+                    <h2>AI Recommendations</h2>
+
+                    <div id="recommendationBox">
+
+                        Waiting for analysis...
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <p>Storm Drain AI V1 — Engineering Smart Drainage Systems</p>
+
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="js/calculations.js"></script>
+    <script src="js/recommendations.js"></script>
+    <script src="js/validations.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
