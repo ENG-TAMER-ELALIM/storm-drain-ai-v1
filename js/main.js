@@ -75,6 +75,22 @@ document.getElementById("diameterResult")
 .innerText =
 pipeDiameter + " mm";
 
+
+    // CALCULATE VELOCITY
+
+const velocity =
+    calculateVelocity(
+        flow,
+        pipeDiameter
+    );
+
+
+// DISPLAY VELOCITY
+
+document.getElementById("velocityResult")
+.innerText =
+velocity.toFixed(2) + " m/s";
+
 });
 
 
