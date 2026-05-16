@@ -108,6 +108,35 @@ function calculatePipeDiameter(flow, slope, manning) {
     }
 
 
+    // ============================================
+// FLOW VELOCITY CALCULATION
+// ============================================
+
+
+function calculateVelocity(flow, diameter) {
+
+    // CONVERT TO METERS
+
+    const D = diameter / 1000;
+
+
+    // PIPE AREA
+
+    const area =
+        Math.PI * Math.pow(D, 2) / 4;
+
+
+    // VELOCITY
+
+    const velocity =
+        flow / area;
+
+
+    return velocity;
+
+}
+
+
     // IF FLOW TOO HIGH
 
     return "Above 1200 mm";
