@@ -4,18 +4,17 @@
 // ============================================
 
 
+// ============================================
 // RATIONAL METHOD
 // Q = 0.00278 * C * i * A
-
+// ============================================
 
 function calculateFlow(rainfall, area, runoff) {
 
     // CONVERT VALUES TO NUMBERS
 
     rainfall = Number(rainfall);
-
     area = Number(area);
-
     runoff = Number(runoff);
 
 
@@ -24,8 +23,6 @@ function calculateFlow(rainfall, area, runoff) {
     const flow =
         0.00278 * runoff * rainfall * area;
 
-
-    // RETURN RESULT
 
     return flow;
 
@@ -36,7 +33,6 @@ function calculateFlow(rainfall, area, runoff) {
 // PIPE DIAMETER CALCULATION
 // USING MANNING EQUATION
 // ============================================
-
 
 function calculatePipeDiameter(flow, slope, manning) {
 
@@ -83,12 +79,11 @@ function calculatePipeDiameter(flow, slope, manning) {
 
 
         // HYDRAULIC RADIUS
-        // FULL FLOW PIPE
 
         const radius = D / 4;
 
 
-        // MANNING FLOW
+        // MANNING FLOW CAPACITY
 
         const capacity =
             (1 / manning) *
@@ -108,14 +103,20 @@ function calculatePipeDiameter(flow, slope, manning) {
     }
 
 
-    // ============================================
+    // IF FLOW TOO HIGH
+
+    return "Above 1200 mm";
+
+}
+
+
+// ============================================
 // FLOW VELOCITY CALCULATION
 // ============================================
 
-
 function calculateVelocity(flow, diameter) {
 
-    // CONVERT TO METERS
+    // CONVERT DIAMETER TO METERS
 
     const D = diameter / 1000;
 
@@ -135,11 +136,3 @@ function calculateVelocity(flow, diameter) {
     return velocity;
 
 }
-
-
-    // IF FLOW TOO HIGH
-
-    return "Above 1200 mm";
-
-}
-
