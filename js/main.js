@@ -91,6 +91,22 @@ document.getElementById("velocityResult")
 .innerText =
 velocity.toFixed(2) + " m/s";
 
+
+
+    // GENERATE RECOMMENDATIONS
+
+const recommendation =
+    generateRecommendations(
+        velocity
+    );
+
+
+// DISPLAY RECOMMENDATIONS
+
+document.getElementById("recommendationBox")
+.innerText =
+recommendation;
+
 });
 
 
