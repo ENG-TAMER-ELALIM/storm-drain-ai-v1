@@ -58,6 +58,23 @@ document.getElementById("flowResult")
 .innerText =
 flow.toFixed(3) + " m³/s";
 
+
+    // CALCULATE PIPE DIAMETER
+
+const pipeDiameter =
+    calculatePipeDiameter(
+        flow,
+        slope,
+        manning
+    );
+
+
+// DISPLAY DIAMETER
+
+document.getElementById("diameterResult")
+.innerText =
+pipeDiameter + " mm";
+
 });
 
 
