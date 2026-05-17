@@ -14,6 +14,7 @@ function validateInputs(
     // CHECK EMPTY VALUES
 
     if (
+        pipeLength === "" ||
         networkType === "" ||
         rainfall === "" ||
         area === "" ||
@@ -34,6 +35,7 @@ function validateInputs(
     // CHECK NEGATIVE VALUES
 
     if (
+        pipeLength <= 0 ||
         rainfall <= 0 ||
         area <= 0 ||
         runoff <= 0 ||
