@@ -2,8 +2,24 @@
 // ENGINEERING RECOMMENDATIONS
 // ============================================
 
+function generateRecommendations(
+    velocity
+) {
 
-function generateRecommendations(velocity) {
+    // INVALID VALUE
+
+    if (
+        isNaN(velocity) ||
+        velocity <= 0
+    ) {
+
+        return `
+        No hydraulic analysis available.
+        Please enter valid project data.
+        `;
+
+    }
+
 
     // LOW VELOCITY
 
@@ -12,10 +28,13 @@ function generateRecommendations(velocity) {
         return `
         WARNING:
         Flow velocity is too low.
+
         Risk of sedimentation and blockage.
-        Consider reducing pipe diameter
-        or increasing slope.
+
+        Recommendation:
+        Reduce pipe diameter or increase slope.
         `;
+
     }
 
 
@@ -26,10 +45,13 @@ function generateRecommendations(velocity) {
         return `
         WARNING:
         Flow velocity is too high.
-        Risk of pipe erosion and damage.
-        Consider increasing pipe diameter
-        or reducing slope.
+
+        Risk of erosion and pipe damage.
+
+        Recommendation:
+        Increase pipe diameter or reduce slope.
         `;
+
     }
 
 
@@ -39,10 +61,13 @@ function generateRecommendations(velocity) {
 
         return `
         DESIGN STATUS:
+
         Hydraulic velocity is within
-        recommended engineering limits.
+        acceptable engineering limits.
+
         System performance is acceptable.
         `;
+
     }
 
 }
