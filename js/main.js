@@ -97,9 +97,9 @@ const pipeDiameter =
     calculatePipeDiameter(
         flow,
         slope,
-        manning
+        manning,
+        networkType
     );
-
 
 // DISPLAY DIAMETER
 
