@@ -46,6 +46,7 @@ const networkType =
 
 const validation =
     validateInputs(
+        networkType,
         rainfall,
         area,
         runoff,
