@@ -34,7 +34,12 @@ function calculateFlow(rainfall, area, runoff) {
 // USING MANNING EQUATION
 // ============================================
 
-function calculatePipeDiameter(flow, slope, manning) {
+function calculatePipeDiameter(
+    flow,
+    slope,
+    manning,
+    networkType
+) {
 
     // CONVERT INPUTS
 
@@ -61,6 +66,24 @@ function calculatePipeDiameter(flow, slope, manning) {
         1050,
         1200
     ];
+    // MINIMUM DIAMETER
+
+let minimumDiameter = 300;
+
+
+// NETWORK RULES
+
+if (networkType === "secondary") {
+
+    minimumDiameter = 450;
+
+}
+
+else if (networkType === "main") {
+
+    minimumDiameter = 600;
+
+}
 
 
     // LOOP THROUGH DIAMETERS
@@ -70,6 +93,14 @@ function calculatePipeDiameter(flow, slope, manning) {
         // CONVERT TO METERS
 
         const D = d / 1000;
+
+        // SKIP SMALL DIAMETERS
+
+if (d < minimumDiameter) {
+
+    continue;
+
+}
 
 
         // PIPE AREA
