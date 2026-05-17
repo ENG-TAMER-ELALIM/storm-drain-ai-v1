@@ -136,3 +136,61 @@ function calculateVelocity(flow, diameter) {
     return velocity;
 
 }
+
+
+
+// ============================================
+// MANHOLE CALCULATION
+// ============================================
+
+function calculateManholes(
+    networkType,
+    pipeLength
+) {
+
+    // CONVERT TO NUMBER
+
+    pipeLength = Number(pipeLength);
+
+
+    // DEFAULT SPACING
+
+    let spacing = 50;
+
+
+    // NETWORK TYPE RULES
+
+    if (networkType === "internal") {
+
+        spacing = 50;
+
+    }
+
+    else if (networkType === "secondary") {
+
+        spacing = 80;
+
+    }
+
+    else if (networkType === "main") {
+
+        spacing = 120;
+
+    }
+
+
+    // CALCULATE MANHOLES
+
+    const manholes =
+        Math.ceil(pipeLength / spacing) + 1;
+
+
+    // RETURN RESULTS
+
+    return {
+        spacing: spacing,
+        count: manholes
+    };
+
+}
+
