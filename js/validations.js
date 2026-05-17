@@ -7,7 +7,8 @@ function validateInputs(
     area,
     runoff,
     slope,
-    manning
+    manning,
+    pipeLength
 ) {
 
     // CHECK EMPTY VALUES
