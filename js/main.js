@@ -29,6 +29,9 @@ const networkType =
     const manning =
         document.getElementById("manning").value;
 
+    const pipeLength =
+        document.getElementById("pipeLength").value;
+
 
     // PRINT VALUES TO CONSOLE
 
