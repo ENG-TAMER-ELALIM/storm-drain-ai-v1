@@ -1,8 +1,8 @@
 // ============================================
 // INPUT VALIDATION
 // ============================================
-
 function validateInputs(
+    networkType,
     rainfall,
     area,
     runoff,
@@ -13,6 +13,7 @@ function validateInputs(
     // CHECK EMPTY VALUES
 
     if (
+        networkType === "" ||
         rainfall === "" ||
         area === "" ||
         runoff === "" ||
