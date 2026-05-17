@@ -7,6 +7,11 @@ const calculateBtn = document.getElementById("calculateBtn");
 
 calculateBtn.addEventListener("click", function () {
 
+    // NETWORK TYPE
+
+const networkType =
+    document.getElementById("networkType").value;
+    
     // READ INPUT VALUES
 
     const rainfall =
