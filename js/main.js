@@ -37,6 +37,28 @@ calculateBtn.addEventListener("click", function () {
 
     console.log("Manning:", manning);
 
+    // VALIDATE INPUTS
+
+const validation =
+    validateInputs(
+        rainfall,
+        area,
+        runoff,
+        slope,
+        manning
+    );
+
+
+// STOP IF INVALID
+
+if (!validation.valid) {
+
+    alert(validation.message);
+
+    return;
+
+}
+
     // CALCULATE FLOW
 
 const flow =
