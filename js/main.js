@@ -123,6 +123,22 @@ document.getElementById("velocityResult")
 .innerText =
 velocity.toFixed(2) + " m/s";
 
+    
+// CALCULATE MANHOLES
+
+const manholeData =
+    calculateManholes(
+        networkType,
+        pipeLength
+    );
+
+
+// DISPLAY MANHOLES
+
+document.getElementById("manholeResult")
+.innerText =
+manholeData.count +
+" MH";
 
 
     // GENERATE RECOMMENDATIONS
