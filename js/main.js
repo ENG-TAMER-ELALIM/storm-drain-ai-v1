@@ -141,6 +141,23 @@ manholeData.count +
 " MH";
 
 
+    // CALCULATE CATCH BASINS
+
+const basinData =
+    calculateCatchBasins(
+        flow,
+        networkType
+    );
+
+
+// DISPLAY RESULT
+
+document.getElementById("basinResult")
+.innerText =
+basinData.count +
+" CB";
+
+
     // GENERATE RECOMMENDATIONS
 
 const recommendation =
