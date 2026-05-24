@@ -179,7 +179,8 @@ const pumpData =
     determinePumpStation(
         networkType,
         velocity,
-        pipeLength
+        pipeLength,
+        pipeDiameter
     );
 
 
