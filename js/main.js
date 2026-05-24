@@ -145,9 +145,10 @@ manholeData.count +
 
 const recommendation =
     generateRecommendations(
-        velocity
+        velocity,
+        pipeDiameter,
+        networkType
     );
-
 
 // DISPLAY RECOMMENDATIONS
 
