@@ -157,6 +157,20 @@ document.getElementById("basinResult")
 basinData.count +
 " CB";
 
+    
+// DETERMINE INLET TYPE
+
+const inletType =
+    determineInletType(
+        networkType
+    );
+
+
+// DISPLAY RESULT
+
+document.getElementById("inletTypeResult")
+.innerText =
+inletType;
 
     // GENERATE RECOMMENDATIONS
 
