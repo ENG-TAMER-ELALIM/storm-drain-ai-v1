@@ -390,3 +390,46 @@ function determinePumpStation(
 
 }
 
+
+// ============================================
+// PUMP CAPACITY CALCULATION
+// ============================================
+
+function calculatePumpCapacity(
+    flow,
+    pumps
+) {
+
+    // NO PUMPS
+
+    if (pumps === 0) {
+
+        return 0;
+
+    }
+
+
+    // NUMBER OF DUTY PUMPS
+
+    let dutyPumps = 1;
+
+
+    // LARGE STATION
+
+    if (pumps >= 3) {
+
+        dutyPumps = 2;
+
+    }
+
+
+    // PUMP CAPACITY
+
+    const capacity =
+        flow / dutyPumps;
+
+
+    return capacity;
+
+}
+
