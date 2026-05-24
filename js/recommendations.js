@@ -8,20 +8,49 @@ function generateRecommendations(
     networkType
 ) {
 
-    // INVALID VALUES
+    // INVALID ANALYSIS
 
-    if (
-        isNaN(velocity) ||
-        velocity <= 0
-    ) {
+if (isNaN(velocity)) {
 
-        return `
-        No hydraulic analysis available.
+    return `
+    No hydraulic analysis available.
 
-        Please enter valid project data.
-        `;
+    Please enter valid project data.
+    `;
 
-    }
+}
+
+
+// MEGA FLOW CONDITION
+
+if (
+    velocity === 0 &&
+    typeof pipeDiameter !== "number"
+) {
+
+    return `
+    CRITICAL DESIGN CONDITION:
+
+    Hydraulic flow exceeds
+    the standard pipe range.
+
+    Major stormwater infrastructure
+    is required.
+
+    Recommended Solutions:
+
+    • Parallel Pipe System
+
+    • RC Box Culvert
+
+    • Large Trunk Drainage
+
+    • Major Pump Station
+
+    • Advanced Hydraulic Modeling
+    `;
+
+}
 
 
     // MINIMUM DIAMETERS
