@@ -342,7 +342,8 @@ function determineInletType(
 function determinePumpStation(
     networkType,
     velocity,
-    pipeLength
+    pipeLength,
+    pipeDiameter
 ) {
 
     // CONVERT LENGTH
@@ -355,6 +356,19 @@ function determinePumpStation(
     let stationRequired = "Not Required";
 
     let pumps = 0;
+
+    // LARGE FLOW CONDITION
+
+if (
+    typeof pipeDiameter !== "number"
+) {
+
+    stationRequired =
+        "Major Pump Station Required";
+
+    pumps = 3;
+
+}
 
 
     // SECONDARY COLLECTOR
