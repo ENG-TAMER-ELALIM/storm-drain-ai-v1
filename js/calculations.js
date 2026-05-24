@@ -278,3 +278,49 @@ function calculateCatchBasins(
 
 }
 
+
+// ============================================
+// INLET TYPE SELECTION
+// ============================================
+
+function determineInletType(
+    networkType
+) {
+
+    // INTERNAL DRAINAGE
+
+    if (networkType === "internal") {
+
+        return "Grated Inlet";
+
+    }
+
+
+    // SECONDARY COLLECTOR
+
+    else if (
+        networkType === "secondary"
+    ) {
+
+        return "Combination Inlet";
+
+    }
+
+
+    // MAIN TRUNK
+
+    else if (
+        networkType === "main"
+    ) {
+
+        return "Curb + Sag Inlet";
+
+    }
+
+
+    // DEFAULT
+
+    return "Standard Inlet";
+
+}
+
