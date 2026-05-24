@@ -225,3 +225,56 @@ function calculateManholes(
 
 }
 
+
+// ============================================
+// CATCH BASIN CALCULATION
+// ============================================
+
+function calculateCatchBasins(
+    flow,
+    networkType
+) {
+
+    // CONVERT FLOW TO L/s
+
+    const flowLS =
+        flow * 1000;
+
+
+    // DEFAULT INLET CAPACITY
+
+    let inletCapacity = 30;
+
+
+    // NETWORK RULES
+
+    if (networkType === "secondary") {
+
+        inletCapacity = 50;
+
+    }
+
+    else if (networkType === "main") {
+
+        inletCapacity = 80;
+
+    }
+
+
+    // CALCULATE NUMBER OF BASINS
+
+    const basins =
+        Math.ceil(
+            flowLS / inletCapacity
+        );
+
+
+    // RETURN RESULTS
+
+    return {
+        count: basins,
+        capacity: inletCapacity
+    };
+
+}
+
