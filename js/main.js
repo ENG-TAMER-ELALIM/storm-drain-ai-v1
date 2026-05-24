@@ -194,6 +194,22 @@ document.getElementById("pumpCountResult")
 .innerText =
 pumpData.pumps;
 
+    // CALCULATE PUMP CAPACITY
+
+const pumpCapacity =
+    calculatePumpCapacity(
+        flow,
+        pumpData.pumps
+    );
+
+
+// DISPLAY RESULT
+
+document.getElementById("pumpCapacityResult")
+.innerText =
+pumpCapacity.toFixed(3) +
+" m³/s";
+
     // GENERATE RECOMMENDATIONS
 
 const recommendation =
