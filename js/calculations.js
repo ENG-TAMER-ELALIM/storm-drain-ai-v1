@@ -147,6 +147,16 @@ if (d < minimumDiameter) {
 
 function calculateVelocity(flow, diameter) {
 
+    // INVALID DIAMETER
+
+if (
+    typeof diameter !== "number"
+) {
+
+    return 0;
+
+}
+    
     // CONVERT DIAMETER TO METERS
 
     const D = diameter / 1000;
