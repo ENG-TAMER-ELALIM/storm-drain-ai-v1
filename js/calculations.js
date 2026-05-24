@@ -324,3 +324,69 @@ function determineInletType(
 
 }
 
+
+// ============================================
+// PUMP STATION DECISION
+// ============================================
+
+function determinePumpStation(
+    networkType,
+    velocity,
+    pipeLength
+) {
+
+    // CONVERT LENGTH
+
+    pipeLength = Number(pipeLength);
+
+
+    // DEFAULT RESULT
+
+    let stationRequired = "Not Required";
+
+    let pumps = 0;
+
+
+    // SECONDARY COLLECTOR
+
+    if (
+        networkType === "secondary" &&
+        velocity < 0.75
+    ) {
+
+        stationRequired = "Required";
+
+        pumps = 2;
+
+    }
+
+
+    // MAIN TRUNK
+
+    if (
+        networkType === "main" &&
+        (
+            velocity < 0.75 ||
+            pipeLength > 1000
+        )
+    ) {
+
+        stationRequired = "Required";
+
+        pumps = 3;
+
+    }
+
+
+    // RETURN RESULTS
+
+    return {
+
+        station: stationRequired,
+
+        pumps: pumps
+
+    };
+
+}
+
