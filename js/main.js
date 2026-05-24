@@ -172,6 +172,28 @@ document.getElementById("inletTypeResult")
 .innerText =
 inletType;
 
+
+    // DETERMINE PUMP STATION
+
+const pumpData =
+    determinePumpStation(
+        networkType,
+        velocity,
+        pipeLength
+    );
+
+
+// DISPLAY RESULTS
+
+document.getElementById("pumpStationResult")
+.innerText =
+pumpData.station;
+
+
+document.getElementById("pumpCountResult")
+.innerText =
+pumpData.pumps;
+
     // GENERATE RECOMMENDATIONS
 
 const recommendation =
