@@ -1193,3 +1193,127 @@ function determinePumpLevels(
     };
 
 }
+
+// ============================================
+// AI OVERFLOW RISK ANALYSIS
+// ============================================
+
+function analyzeOverflowRisk(
+    stationType,
+    levelData,
+    storageData
+) {
+
+    // NO STATION
+
+    if (
+        stationType ===
+        "No Station"
+    ) {
+
+        return {
+
+            margin: "--",
+
+            risk:
+                "Gravity System Safe",
+
+            storage:
+                "No Wet Well Required"
+
+        };
+
+    }
+
+
+    // CONVERT LEVELS
+
+    const overflow =
+        parseFloat(
+            levelData.overflow
+        );
+
+    const alarm =
+        parseFloat(
+            levelData.alarm
+        );
+
+
+    // SAFETY MARGIN
+
+    const margin =
+        overflow - alarm;
+
+
+    // RISK STATUS
+
+    let risk =
+        "Safe Operation";
+
+
+    // CRITICAL
+
+    if (margin < 0.5) {
+
+        risk =
+            "Critical Overflow Risk";
+
+    }
+
+
+    // WARNING
+
+    else if (margin <= 1.0) {
+
+        risk =
+            "Moderate Flood Risk";
+
+    }
+
+
+    // STORAGE STATUS
+
+    let storage =
+        "High Protection";
+
+
+    // SMALL STORAGE
+
+    if (
+        storageData.storage ===
+        "15 m³"
+    ) {
+
+        storage =
+            "Limited Emergency Buffer";
+
+    }
+
+
+    // MEDIUM STORAGE
+
+    else if (
+        storageData.storage ===
+        "50 m³"
+    ) {
+
+        storage =
+            "Acceptable Storage Capacity";
+
+    }
+
+
+    // RETURN RESULTS
+
+    return {
+
+        margin:
+            margin.toFixed(2) + " m",
+
+        risk: risk,
+
+        storage: storage
+
+    };
+
+}
