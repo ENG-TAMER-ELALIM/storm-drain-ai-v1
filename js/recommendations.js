@@ -1,262 +1,115 @@
 // ============================================
-// ADVANCED AI RECOMMENDATION ENGINE
+// PROFESSIONAL AI RECOMMENDATION ENGINE
 // ============================================
 
 function generateRecommendations(
+
     velocity,
-    pipeDiameter,
-    networkType,
-    depthClass,
-    overflowRisk,
-    storageStatus,
-    cbStatus
+    depth,
+    stationType,
+    flow,
+    diameter
+
 ) {
 
-    // FINAL MESSAGE
+    // LOW VELOCITY
 
-    let message = "";
+    if (velocity < 0.6) {
 
+        return `
+        WARNING:
 
-    // =========================================
-    // CRITICAL HYDRAULIC CAPACITY
-    // =========================================
+        Flow velocity is too low.
 
-    if (
-        typeof pipeDiameter !== "number"
-    ) {
+        Risk of sedimentation and blockage.
 
-        message += `
-CRITICAL HYDRAULIC CONDITION:
-
-Flow exceeds standard pipe capacity.
-
-Recommended Actions:
-
-• Consider box culvert system
-• Use parallel trunk pipes
-• Add major pump station
-• Perform advanced hydraulic modeling
-
-`;
+        Recommendation:
+        Increase slope or reduce pipe diameter.
+        `;
 
     }
 
 
-    // =========================================
-    // VELOCITY ANALYSIS
-    // =========================================
+    // HIGH VELOCITY
 
-    if (velocity < 0.75) {
+    if (velocity > 3.5) {
 
-        message += `
-LOW VELOCITY WARNING:
+        return `
+        WARNING:
 
-Risk of sedimentation and blockage.
+        Hydraulic velocity is excessive.
 
-Recommendations:
+        Risk of pipe erosion and turbulence.
 
-• Increase pipe slope
-• Review network classification
-• Improve hydraulic gradient
-
-`;
+        Recommendation:
+        Add drop structures or energy dissipation.
+        `;
 
     }
 
 
-    else if (velocity > 5) {
+    // VERY DEEP SYSTEM
 
-        message += `
-HIGH VELOCITY WARNING:
+    if (depth > 8) {
 
-Risk of pipe erosion.
+        return `
+        DEEP NETWORK WARNING:
 
-Recommendations:
+        Excavation depth is very high.
 
-• Increase pipe diameter
-• Reduce hydraulic slope
-• Install energy dissipation structures
-
-`;
-
-    }
-
-
-    else {
-
-        message += `
-HYDRAULIC PERFORMANCE:
-
-Velocity within acceptable limits.
-
-`;
+        Recommendation:
+        Evaluate intermediate lift station
+        or optimize network alignment.
+        `;
 
     }
 
 
-    // =========================================
-    // DEPTH ANALYSIS
-    // =========================================
+    // LARGE FLOW
 
-    if (
-        depthClass ===
-        "Critical Deep Structure"
-    ) {
+    if (flow > 5) {
 
-        message += `
-DEEP EXCAVATION ALERT:
+        return `
+        HIGH FLOW SYSTEM:
 
-Excessive excavation depth detected.
+        Major stormwater collector detected.
 
-Recommendations:
-
-• Consider intermediate pump station
-• Reduce trench depth
-• Review pipe routing
-
-`;
+        Recommendation:
+        Verify hydraulic grade line (HGL)
+        and surcharge conditions.
+        `;
 
     }
 
 
-    else if (
-        depthClass ===
-        "Deep MH"
-    ) {
+    // PUMP STATION
 
-        message += `
-DEEP MANHOLE CONDITION:
+    if (stationType !== "No Station") {
 
-Deep access structure required.
+        return `
+        PUMP STATION ACTIVE:
 
-Recommendations:
+        Pump station operation required.
 
-• Provide access safety systems
-• Verify excavation stability
-
-`;
+        Recommendation:
+        Monitor wet well levels,
+        pump cycling,
+        and emergency overflow conditions.
+        `;
 
     }
 
 
-    // =========================================
-    // OVERFLOW RISK
-    // =========================================
+    // NORMAL CONDITION
 
-    if (
-        overflowRisk ===
-        "Critical Overflow Risk"
-    ) {
+    return `
+    DESIGN STATUS:
 
-        message += `
-CRITICAL FLOOD RISK:
+    Hydraulic velocity is within
+    acceptable engineering limits.
 
-Overflow potential detected.
-
-Recommendations:
-
-• Increase emergency storage
-• Add standby pumping capacity
-• Install overflow protection systems
-
-`;
-
-    }
-
-
-    else if (
-        overflowRisk ===
-        "Moderate Flood Risk"
-    ) {
-
-        message += `
-MODERATE FLOOD RISK:
-
-Limited hydraulic safety margin.
-
-Recommendations:
-
-• Monitor wet well levels
-• Improve storage capacity
-
-`;
-
-    }
-
-
-    // =========================================
-    // STORAGE STATUS
-    // =========================================
-
-    if (
-        storageStatus ===
-        "Limited Emergency Buffer"
-    ) {
-
-        message += `
-LIMITED STORAGE WARNING:
-
-Emergency storage capacity is limited.
-
-Recommendations:
-
-• Increase wet well volume
-• Improve emergency retention
-
-`;
-
-    }
-
-
-    // =========================================
-    // CB DISTRIBUTION
-    // =========================================
-
-    if (
-        cbStatus ===
-        "Flooding Risk - Reduce Spacing"
-    ) {
-
-        message += `
-SURFACE DRAINAGE WARNING:
-
-Catch basin spacing is excessive.
-
-Recommendations:
-
-• Reduce inlet spacing
-• Add additional catch basins
-• Improve surface collection efficiency
-
-`;
-
-    }
-
-
-    // =========================================
-    // SAFE SYSTEM
-    // =========================================
-
-    if (
-        message.includes("WARNING") === false &&
-        message.includes("RISK") === false &&
-        message.includes("ALERT") === false &&
-        message.includes("CRITICAL") === false
-    ) {
-
-        message += `
-FINAL STATUS:
-
-System hydraulic and operational
-performance acceptable.
-
-No critical engineering risks detected.
-
-`;
-
-    }
-
-
-    return message;
+    System hydraulic performance
+    is acceptable.
+    `;
 
 }
