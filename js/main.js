@@ -399,6 +399,45 @@ document.getElementById(
     "operationResult"
 ).innerText =
 storageData.operation;
+
+    // DETERMINE PUMP LEVELS
+
+const levelData =
+    determinePumpLevels(
+        stationData.type
+    );
+
+
+// DISPLAY START LEVEL
+
+document.getElementById(
+    "startLevelResult"
+).innerText =
+levelData.start;
+
+
+// DISPLAY STOP LEVEL
+
+document.getElementById(
+    "stopLevelResult"
+).innerText =
+levelData.stop;
+
+
+// DISPLAY ALARM LEVEL
+
+document.getElementById(
+    "alarmLevelResult"
+).innerText =
+levelData.alarm;
+
+
+// DISPLAY OVERFLOW LEVEL
+
+document.getElementById(
+    "overflowLevelResult"
+).innerText =
+levelData.overflow;
     
     // GENERATE RECOMMENDATIONS
 
