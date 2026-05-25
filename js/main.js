@@ -292,6 +292,30 @@ document.getElementById("pumpCapacityResult")
 pumpCapacity.toFixed(3) +
 " m³/s";
 
+    
+// DETERMINE STATION SIZE
+
+const stationData =
+    determinePumpStationSize(
+        flow,
+        pumpData.station
+    );
+
+
+// DISPLAY STATION TYPE
+
+document.getElementById(
+    "stationTypeResult"
+).innerText =
+stationData.type;
+
+
+// DISPLAY WET WELL
+
+document.getElementById(
+    "wetWellResult"
+).innerText =
+stationData.wetWell;
     // GENERATE RECOMMENDATIONS
 
 const recommendation =
