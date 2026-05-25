@@ -140,6 +140,20 @@ document.getElementById("manholeResult")
 manholeData.count +
 " MH";
 
+    // DETERMINE MANHOLE DIAMETER
+
+const manholeDiameter =
+    determineManholeDiameter(
+        pipeDiameter
+    );
+
+
+// DISPLAY RESULT
+
+document.getElementById("manholeDiameterResult")
+.innerText =
+manholeDiameter;
+
 
     // CALCULATE CATCH BASINS
 
