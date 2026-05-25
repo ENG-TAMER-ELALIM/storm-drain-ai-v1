@@ -140,6 +140,34 @@ document.getElementById("manholeResult")
 manholeData.count +
 " MH";
 
+    // CALCULATE DEPTH
+
+const depth =
+    calculateDepth(
+        pipeLength,
+        slope
+    );
+
+
+// DISPLAY DEPTH
+
+document.getElementById("depthResult")
+.innerText =
+depth.toFixed(2) + " m";
+
+
+// CLASSIFY DEPTH
+
+const depthClass =
+    classifyDepth(depth);
+
+
+// DISPLAY CLASSIFICATION
+
+document.getElementById("depthClassResult")
+.innerText =
+depthClass;
+
     // DETERMINE MANHOLE DIAMETER
 
 const manholeDiameter =
