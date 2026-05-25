@@ -316,6 +316,34 @@ document.getElementById(
     "wetWellResult"
 ).innerText =
 stationData.wetWell;
+
+// DETERMINE STATION LOCATION
+
+const locationData =
+    determinePumpLocation(
+        networkType,
+        slope,
+        pipeLength,
+        depth,
+        pumpData.station
+    );
+
+
+// DISPLAY LOCATION
+
+document.getElementById(
+    "stationLocationResult"
+).innerText =
+locationData.location;
+
+
+// DISPLAY REASON
+
+document.getElementById(
+    "placementReasonResult"
+).innerText =
+locationData.reason;
+    
     // GENERATE RECOMMENDATIONS
 
 const recommendation =
