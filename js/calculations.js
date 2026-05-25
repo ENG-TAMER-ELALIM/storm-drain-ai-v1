@@ -457,3 +457,50 @@ function calculatePumpCapacity(
 
 }
 
+
+// ============================================
+// MANHOLE DIAMETER SELECTION
+// ============================================
+
+function determineManholeDiameter(
+    pipeDiameter
+) {
+
+    // INVALID PIPE
+
+    if (
+        typeof pipeDiameter !== "number"
+    ) {
+
+        return "Special Structure";
+
+    }
+
+
+    // SMALL PIPE
+
+    if (pipeDiameter <= 450) {
+
+        return "1200 mm";
+
+    }
+
+
+    // MEDIUM PIPE
+
+    else if (pipeDiameter <= 900) {
+
+        return "1500 mm";
+
+    }
+
+
+    // LARGE PIPE
+
+    else {
+
+        return "1800 mm";
+
+    }
+
+}
