@@ -738,27 +738,38 @@ const hglEndY =
     waterDepth;
 
 
-// LIMIT HGL INSIDE PIPE
-
-const minHGLStart =
-    crownStartY + 4;
-
-const minHGLEnd =
-    crownEndY + 4;
+// =========================================
+// REALISTIC HGL CONSTRAINT
+// =========================================
 
 
-// PREVENT FLOATING HGL
+// KEEP HGL INSIDE PIPE
 
 const finalHGLStartY =
-    Math.max(
+    Math.min(
         hglStartY,
-        minHGLStart
+        invertStartY - 6
     );
 
 const finalHGLEndY =
-    Math.max(
+    Math.min(
         hglEndY,
-        minHGLEnd
+        invertEndY - 6
+    );
+
+
+// PREVENT HGL ABOVE PIPE
+
+const limitedHGLStartY =
+    Math.max(
+        finalHGLStartY,
+        crownStartY + 6
+    );
+
+const limitedHGLEndY =
+    Math.max(
+        finalHGLEndY,
+        crownEndY + 6
     );
     // =========================================
 // SURCHARGE CONDITION
@@ -792,8 +803,8 @@ svg.innerHTML += `
 svg.innerHTML += `
     <polygon
         points="
-            ${startX},${finalHGLStartY}
-            ${endX},${finalHGLEndY}
+            ${startX},${limitedHGLStartY}
+            ${endX},${limitedHGLEndY}
             ${endX},${invertEndY}
             ${startX},${invertStartY}
         "
