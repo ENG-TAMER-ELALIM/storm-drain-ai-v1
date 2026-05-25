@@ -253,6 +253,31 @@ document.getElementById(
 ).innerText =
 cbData.depth;
 
+    // DETERMINE CB SPACING
+
+const spacingData =
+    determineCatchBasinSpacing(
+        networkType,
+        pipeLength,
+        basinData.count
+    );
+
+
+// DISPLAY SPACING
+
+document.getElementById(
+    "cbSpacingResult"
+).innerText =
+spacingData.spacing;
+
+
+// DISPLAY STATUS
+
+document.getElementById(
+    "cbDistributionResult"
+).innerText =
+spacingData.status;
+
 
     // DETERMINE PUMP STATION
 
