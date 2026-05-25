@@ -644,3 +644,76 @@ function classifyDepth(depth) {
     }
 
 }
+
+
+// ============================================
+// CATCH BASIN SIZE SELECTION
+// ============================================
+
+function determineCatchBasinSize(
+    flow
+) {
+
+    // CONVERT FLOW TO L/s
+
+    const flowLs =
+        flow * 1000;
+
+
+    // FLOW PER BASIN
+
+    const basinFlow =
+        flowLs / 10;
+
+
+    // SMALL CB
+
+    if (basinFlow <= 30) {
+
+        return {
+
+            size: "600 x 600 mm",
+
+            depth: "1.2 m",
+
+            type: "Small CB"
+
+        };
+
+    }
+
+
+    // MEDIUM CB
+
+    else if (basinFlow <= 60) {
+
+        return {
+
+            size: "900 x 900 mm",
+
+            depth: "1.5 m",
+
+            type: "Medium CB"
+
+        };
+
+    }
+
+
+    // LARGE CB
+
+    else {
+
+        return {
+
+            size: "1200 x 1200 mm",
+
+            depth: "1.8 m",
+
+            type: "Large CB"
+
+        };
+
+    }
+
+}
