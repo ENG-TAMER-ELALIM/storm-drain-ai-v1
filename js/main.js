@@ -755,3 +755,24 @@ drawHydraulicProfile(
     stationData.type,
     levelData
 );
+
+
+// ============================================
+// SYSTEM STATUS UPDATE
+// ============================================
+
+function updateSystemStatus(
+    status = "SYSTEM ONLINE"
+) {
+
+    const statusElement =
+        document.querySelector(
+            ".status-badge"
+        );
+
+    if (!statusElement) return;
+
+    statusElement.innerText =
+        status;
+
+}
