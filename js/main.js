@@ -478,7 +478,11 @@ const recommendation =
     generateRecommendations(
         velocity,
         pipeDiameter,
-        networkType
+        networkType,
+        depthClass,
+        riskData.risk,
+        riskData.storage,
+        spacingData.status
     );
 
 // DISPLAY RECOMMENDATIONS
