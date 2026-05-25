@@ -154,3 +154,73 @@ if (
     }
 
 }
+
+
+// ============================================
+// SYSTEM STATUS ENGINE
+// ============================================
+
+function updateSystemStatus(
+    velocity,
+    pipeDiameter
+) {
+
+    const status =
+        document.getElementById(
+            "systemStatus"
+        );
+
+
+    // RESET
+
+    status.className =
+        "recommendation-status";
+
+
+    // CRITICAL
+
+    if (
+        typeof pipeDiameter !== "number"
+    ) {
+
+        status.innerText =
+            "CRITICAL CAPACITY";
+
+        status.classList.add(
+            "status-critical"
+        );
+
+        return;
+
+    }
+
+
+    // WARNING
+
+    if (
+        velocity < 0.75 ||
+        velocity > 5
+    ) {
+
+        status.innerText =
+            "WARNING CONDITION";
+
+        status.classList.add(
+            "status-warning"
+        );
+
+        return;
+
+    }
+
+
+    // SAFE
+
+    status.innerText =
+        "HYDRAULIC SAFE";
+
+    status.classList.add(
+        "status-safe"
+    );
+
+}
