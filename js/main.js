@@ -230,6 +230,29 @@ document.getElementById("inletTypeResult")
 .innerText =
 inletType;
 
+    // DETERMINE CB SIZE
+
+const cbData =
+    determineCatchBasinSize(
+        flow
+    );
+
+
+// DISPLAY SIZE
+
+document.getElementById(
+    "cbSizeResult"
+).innerText =
+cbData.size;
+
+
+// DISPLAY DEPTH
+
+document.getElementById(
+    "cbDepthResult"
+).innerText =
+cbData.depth;
+
 
     // DETERMINE PUMP STATION
 
