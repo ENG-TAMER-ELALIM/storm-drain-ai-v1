@@ -694,9 +694,31 @@ const invertEndY =
 
 // WATER DEPTH INSIDE PIPE
 
-const waterDepth =
-    pipeThickness * 0.45;
+// =========================================
+// DYNAMIC PIPE LOADING
+// =========================================
 
+
+// FLOW FACTOR
+
+const flowFactor =
+    Math.min(
+        levelData.flow / 10,
+        1.4
+    );
+
+
+// PIPE LOADING RATIO
+
+const loadingRatio =
+    0.35 + (flowFactor * 0.55);
+
+
+// WATER DEPTH
+
+const waterDepth =
+    pipeThickness *
+    loadingRatio;
 
 // HGL LEVELS
 
@@ -705,6 +727,13 @@ const hglStartY =
 
 const hglEndY =
     invertEndY - waterDepth;
+
+    // =========================================
+// SURCHARGE CONDITION
+// =========================================
+
+const surcharge =
+    loadingRatio > 0.9;
 
 
 // PIPE BODY
@@ -764,7 +793,11 @@ svg.innerHTML += `
         y1="${hglStartY}"
         x2="${endX}"
         y2="${hglEndY}"
-        stroke="#60A5FA"
+        stroke="${
+    surcharge
+        ? '#EF4444'
+        : '#60A5FA'
+}"
         stroke-width="4"
         stroke-dasharray="14 8"
     />
@@ -784,6 +817,26 @@ svg.innerHTML += `
         HGL
     </text>
 `;
+
+    // =========================================
+// FLOOD WARNING
+// =========================================
+
+if (surcharge) {
+
+    svg.innerHTML += `
+        <text
+            x="${startX + 300}"
+            y="${groundStartY - 40}"
+            fill="#EF4444"
+            font-size="22"
+            font-weight="bold"
+        >
+            SURCHARGE CONDITION
+        </text>
+    `;
+
+}
 
 
 // PIPE LABEL
