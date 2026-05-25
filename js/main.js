@@ -687,6 +687,25 @@ const invertStartY =
 const invertEndY =
     pipeEndY + (pipeThickness / 2);
 
+    // =========================================
+// HYDRAULIC GRADE LINE
+// =========================================
+
+
+// WATER DEPTH INSIDE PIPE
+
+const waterDepth =
+    pipeThickness * 0.45;
+
+
+// HGL LEVELS
+
+const hglStartY =
+    invertStartY - waterDepth;
+
+const hglEndY =
+    invertEndY - waterDepth;
+
 
 // PIPE BODY
 
@@ -704,6 +723,22 @@ svg.innerHTML += `
     />
 `;
 
+    
+// =========================================
+// WATER INSIDE PIPE
+// =========================================
+
+svg.innerHTML += `
+    <polygon
+        points="
+            ${startX},${hglStartY}
+            ${endX},${hglEndY}
+            ${endX},${invertEndY}
+            ${startX},${invertStartY}
+        "
+        fill="rgba(59,130,246,0.35)"
+    />
+`;
 
 // PIPE CENTER FLOW LINE
 
@@ -717,6 +752,37 @@ svg.innerHTML += `
         stroke-width="2"
         stroke-dasharray="10 6"
     />
+`;
+
+    // =========================================
+// HGL LINE
+// =========================================
+
+svg.innerHTML += `
+    <line
+        x1="${startX}"
+        y1="${hglStartY}"
+        x2="${endX}"
+        y2="${hglEndY}"
+        stroke="#60A5FA"
+        stroke-width="4"
+        stroke-dasharray="14 8"
+    />
+`;
+
+
+// HGL LABEL
+
+svg.innerHTML += `
+    <text
+        x="${startX + 40}"
+        y="${hglStartY - 10}"
+        fill="#60A5FA"
+        font-size="15"
+        font-weight="bold"
+    >
+        HGL
+    </text>
 `;
 
 
