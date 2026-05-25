@@ -722,12 +722,44 @@ const waterDepth =
 
 // HGL LEVELS
 
+// =========================================
+// REALISTIC HGL POSITION
+// =========================================
+
+
+// NORMAL WATER LEVEL
+
 const hglStartY =
-    invertStartY - waterDepth;
+    invertStartY -
+    waterDepth;
 
 const hglEndY =
-    invertEndY - waterDepth;
+    invertEndY -
+    waterDepth;
 
+
+// LIMIT HGL INSIDE PIPE
+
+const minHGLStart =
+    crownStartY + 4;
+
+const minHGLEnd =
+    crownEndY + 4;
+
+
+// PREVENT FLOATING HGL
+
+const finalHGLStartY =
+    Math.max(
+        hglStartY,
+        minHGLStart
+    );
+
+const finalHGLEndY =
+    Math.max(
+        hglEndY,
+        minHGLEnd
+    );
     // =========================================
 // SURCHARGE CONDITION
 // =========================================
@@ -790,9 +822,9 @@ svg.innerHTML += `
 svg.innerHTML += `
     <line
         x1="${startX}"
-        y1="${hglStartY}"
+        y1="${finalHGLStartY}"
         x2="${endX}"
-        y2="${hglEndY}"
+       y2="${finalHGLEndY}"
         stroke="${
     surcharge
         ? '#EF4444'
