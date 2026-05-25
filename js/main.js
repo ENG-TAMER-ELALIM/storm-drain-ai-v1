@@ -438,6 +438,39 @@ document.getElementById(
     "overflowLevelResult"
 ).innerText =
 levelData.overflow;
+
+    // AI OVERFLOW ANALYSIS
+
+const riskData =
+    analyzeOverflowRisk(
+        stationData.type,
+        levelData,
+        storageData
+    );
+
+
+// DISPLAY SAFETY MARGIN
+
+document.getElementById(
+    "safetyMarginResult"
+).innerText =
+riskData.margin;
+
+
+// DISPLAY OVERFLOW RISK
+
+document.getElementById(
+    "overflowRiskResult"
+).innerText =
+riskData.risk;
+
+
+// DISPLAY STORAGE STATUS
+
+document.getElementById(
+    "storageStatusResult"
+).innerText =
+riskData.storage;
     
     // GENERATE RECOMMENDATIONS
 
