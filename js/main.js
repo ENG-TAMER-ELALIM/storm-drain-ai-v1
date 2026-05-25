@@ -147,9 +147,8 @@ const depth =
         pipeLength,
         slope
     );
-    
-const estimatedDepth =
-    depthData.depth;
+
+const estimatedDepth = depth;
 
 // DISPLAY DEPTH
 
