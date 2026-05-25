@@ -661,35 +661,78 @@ function drawHydraulicProfile(
 
 
     // =========================================
-    // PIPE PROFILE
-    // =========================================
-
-    svg.innerHTML += `
-        <line
-            x1="${startX}"
-            y1="${pipeStartY}"
-            x2="${endX}"
-            y2="${pipeEndY}"
-            stroke="#38BDF8"
-            stroke-width="10"
-            stroke-linecap="round"
-        />
-    `;
+// PROFESSIONAL PIPE BARREL
+// =========================================
 
 
-    // PIPE LABEL
+// PIPE WALL THICKNESS
 
-    svg.innerHTML += `
-        <text
-            x="${startX}"
-            y="${pipeStartY + 35}"
-            fill="#38BDF8"
-            font-size="16"
-            font-weight="bold"
-        >
-            Pipe Invert
-        </text>
-    `;
+const pipeThickness = 26;
+
+
+// TOP PIPE (CROWN)
+
+const crownStartY =
+    pipeStartY - (pipeThickness / 2);
+
+const crownEndY =
+    pipeEndY - (pipeThickness / 2);
+
+
+// BOTTOM PIPE (INVERT)
+
+const invertStartY =
+    pipeStartY + (pipeThickness / 2);
+
+const invertEndY =
+    pipeEndY + (pipeThickness / 2);
+
+
+// PIPE BODY
+
+svg.innerHTML += `
+    <polygon
+        points="
+            ${startX},${crownStartY}
+            ${endX},${crownEndY}
+            ${endX},${invertEndY}
+            ${startX},${invertStartY}
+        "
+        fill="rgba(56,189,248,0.28)"
+        stroke="#38BDF8"
+        stroke-width="3"
+    />
+`;
+
+
+// PIPE CENTER FLOW LINE
+
+svg.innerHTML += `
+    <line
+        x1="${startX}"
+        y1="${pipeStartY}"
+        x2="${endX}"
+        y2="${pipeEndY}"
+        stroke="#7DD3FC"
+        stroke-width="2"
+        stroke-dasharray="10 6"
+    />
+`;
+
+
+// PIPE LABEL
+
+svg.innerHTML += `
+    <text
+        x="${startX}"
+        y="${invertStartY + 35}"
+        fill="#38BDF8"
+        font-size="16"
+        font-weight="bold"
+    >
+        Pipe Barrel
+    </text>
+`;
 
 
     // =========================================
