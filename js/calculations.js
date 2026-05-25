@@ -914,3 +914,104 @@ function determinePumpLocation(
     };
 
 }
+
+
+// ============================================
+// CATCH BASIN SPACING LOGIC
+// ============================================
+
+function determineCatchBasinSpacing(
+    networkType,
+    pipeLength,
+    basinCount
+) {
+
+    // INVALID VALUES
+
+    if (
+        basinCount <= 0
+    ) {
+
+        return {
+
+            spacing: "--",
+
+            status:
+                "No Catch Basins"
+
+        };
+
+    }
+
+
+    // CONVERT VALUES
+
+    pipeLength =
+        Number(pipeLength);
+
+
+    // CALCULATE SPACING
+
+    const spacing =
+        pipeLength / basinCount;
+
+
+    // MAXIMUM ALLOWABLE
+
+    let maxSpacing = 30;
+
+
+    // SECONDARY
+
+    if (
+        networkType ===
+        "secondary"
+    ) {
+
+        maxSpacing = 50;
+
+    }
+
+
+    // MAIN
+
+    if (
+        networkType ===
+        "main"
+    ) {
+
+        maxSpacing = 75;
+
+    }
+
+
+    // STATUS
+
+    let status =
+        "Distribution Acceptable";
+
+
+    // EXCESSIVE SPACING
+
+    if (
+        spacing > maxSpacing
+    ) {
+
+        status =
+            "Flooding Risk - Reduce Spacing";
+
+    }
+
+
+    // RETURN RESULTS
+
+    return {
+
+        spacing:
+            spacing.toFixed(1) + " m",
+
+        status: status
+
+    };
+
+}
