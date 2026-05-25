@@ -504,3 +504,71 @@ function determineManholeDiameter(
     }
 
 }
+
+
+// ============================================
+// MANHOLE TYPE SELECTION
+// ============================================
+
+function determineManholeType(
+    networkType,
+    pipeDiameter,
+    flow
+) {
+
+    // SPECIAL STRUCTURE
+
+    if (
+        typeof pipeDiameter !== "number"
+    ) {
+
+        return "Special Chamber";
+
+    }
+
+
+    // LARGE FLOW
+
+    if (flow > 5) {
+
+        return "Deep Junction MH";
+
+    }
+
+
+    // INTERNAL DRAINAGE
+
+    if (networkType === "internal") {
+
+        return "Inspection MH";
+
+    }
+
+
+    // SECONDARY COLLECTOR
+
+    if (
+        networkType === "secondary"
+    ) {
+
+        return "Junction MH";
+
+    }
+
+
+    // MAIN TRUNK
+
+    if (
+        networkType === "main"
+    ) {
+
+        return "Main Trunk MH";
+
+    }
+
+
+    // DEFAULT
+
+    return "Standard MH";
+
+}
