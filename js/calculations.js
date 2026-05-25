@@ -717,3 +717,78 @@ function determineCatchBasinSize(
     }
 
 }
+
+
+
+// ============================================
+// PUMP STATION SIZING
+// ============================================
+
+function determinePumpStationSize(
+    flow,
+    stationRequired
+) {
+
+    // NO STATION
+
+    if (
+        stationRequired ===
+        "Not Required"
+    ) {
+
+        return {
+
+            type: "No Station",
+
+            wetWell: "--"
+
+        };
+
+    }
+
+
+    // SMALL STATION
+
+    if (flow < 1) {
+
+        return {
+
+            type: "Small Station",
+
+            wetWell: "2 x 2 x 3 m"
+
+        };
+
+    }
+
+
+    // MEDIUM STATION
+
+    else if (flow <= 5) {
+
+        return {
+
+            type: "Medium Station",
+
+            wetWell: "4 x 4 x 4 m"
+
+        };
+
+    }
+
+
+    // MAJOR STATION
+
+    else {
+
+        return {
+
+            type: "Major Station",
+
+            wetWell: "6 x 6 x 6 m"
+
+        };
+
+    }
+
+}
