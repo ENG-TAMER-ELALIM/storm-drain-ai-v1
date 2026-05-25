@@ -1015,3 +1015,90 @@ function determineCatchBasinSpacing(
     };
 
 }
+
+
+// ============================================
+// EMERGENCY STORAGE LOGIC
+// ============================================
+
+function determineEmergencyStorage(
+    stationType
+) {
+
+    // NO STATION
+
+    if (
+        stationType ===
+        "No Station"
+    ) {
+
+        return {
+
+            storage: "--",
+
+            cycle: "--",
+
+            operation:
+                "Gravity Flow"
+
+        };
+
+    }
+
+
+    // SMALL STATION
+
+    if (
+        stationType ===
+        "Small Station"
+    ) {
+
+        return {
+
+            storage: "15 m³",
+
+            cycle: "10 min",
+
+            operation:
+                "Duty / Standby"
+
+        };
+
+    }
+
+
+    // MEDIUM STATION
+
+    if (
+        stationType ===
+        "Medium Station"
+    ) {
+
+        return {
+
+            storage: "50 m³",
+
+            cycle: "15 min",
+
+            operation:
+                "Alternating Pumps"
+
+        };
+
+    }
+
+
+    // MAJOR STATION
+
+    return {
+
+        storage: "150 m³",
+
+        cycle: "20 min",
+
+        operation:
+            "Sequenced Multi-Pump"
+
+    };
+
+}
