@@ -491,6 +491,24 @@ document.getElementById("recommendationBox")
 .innerText =
 recommendation;
 
+    // ============================================
+// DRAW HYDRAULIC PROFILE
+// ============================================
+
+drawHydraulicProfile(
+
+    pipeLength,
+
+    estimatedDepth,
+
+    parseInt(manholeCount),
+
+    stationData.type,
+
+    levelData
+
+);
+
     // UPDATE SYSTEM STATUS
 
 updateSystemStatus(
@@ -747,15 +765,6 @@ function drawHydraulicProfile(
 }
 
 
-// DRAW HYDRAULIC PROFILE
-drawHydraulicProfile(
-    pipeLength,
-    estimatedDepth,
-    manholeCount,
-    stationData.type,
-    levelData
-);
-
 
 // ============================================
 // SYSTEM STATUS UPDATE
@@ -776,3 +785,4 @@ function updateSystemStatus(
         status;
 
 }
+
