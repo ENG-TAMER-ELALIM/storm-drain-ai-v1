@@ -284,6 +284,13 @@ document.getElementById("recommendationBox")
 .innerText =
 recommendation;
 
+    // UPDATE SYSTEM STATUS
+
+updateSystemStatus(
+    velocity,
+    pipeDiameter
+);
+
 });
 
 
