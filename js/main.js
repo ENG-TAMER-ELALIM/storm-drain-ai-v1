@@ -502,7 +502,7 @@ drawHydraulicProfile(
 
     estimatedDepth,
 
-    parseInt(manholeCount),
+    manholeData.count,
 
     stationData.type,
 
