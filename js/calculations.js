@@ -1102,3 +1102,94 @@ function determineEmergencyStorage(
     };
 
 }
+
+
+// ============================================
+// PUMP LEVEL CONTROL LOGIC
+// ============================================
+
+function determinePumpLevels(
+    stationType
+) {
+
+    // NO STATION
+
+    if (
+        stationType ===
+        "No Station"
+    ) {
+
+        return {
+
+            start: "--",
+
+            stop: "--",
+
+            alarm: "--",
+
+            overflow: "--"
+
+        };
+
+    }
+
+
+    // SMALL STATION
+
+    if (
+        stationType ===
+        "Small Station"
+    ) {
+
+        return {
+
+            start: "1.5 m",
+
+            stop: "0.5 m",
+
+            alarm: "2.2 m",
+
+            overflow: "2.8 m"
+
+        };
+
+    }
+
+
+    // MEDIUM STATION
+
+    if (
+        stationType ===
+        "Medium Station"
+    ) {
+
+        return {
+
+            start: "2.0 m",
+
+            stop: "1.0 m",
+
+            alarm: "3.0 m",
+
+            overflow: "3.8 m"
+
+        };
+
+    }
+
+
+    // MAJOR STATION
+
+    return {
+
+        start: "3.0 m",
+
+        stop: "1.5 m",
+
+        alarm: "4.5 m",
+
+        overflow: "5.5 m"
+
+    };
+
+}
