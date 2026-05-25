@@ -521,7 +521,7 @@ updateSystemStatus(
 
 
 // ============================================
-// HYDRAULIC PROFILE DRAWING
+// PROFESSIONAL HYDRAULIC PROFILE ENGINE
 // ============================================
 
 function drawHydraulicProfile(
@@ -539,70 +539,140 @@ function drawHydraulicProfile(
             "profileSVG"
         );
 
-
     // CLEAR OLD DRAWING
 
     svg.innerHTML = "";
 
 
-    // BASIC DIMENSIONS
+    // =========================================
+    // BASIC LAYOUT
+    // =========================================
 
-    const width = 1100;
+    const startX = 100;
 
-    const startX = 80;
+    const endX = 1050;
 
-    const endX = 1000;
-
-    const groundY = 100;
-
-    const pipeY =
-        groundY + (depth * 20);
+    const profileWidth =
+        endX - startX;
 
 
     // =========================================
-    // GROUND LINE
+    // ENGINEERING SCALE
     // =========================================
 
-    const groundLine = `
+    const verticalScale = 12;
+
+    const totalDrop =
+        pipeLength * 0.01;
+
+
+    // =========================================
+    // START LEVELS
+    // =========================================
+
+    const startGroundRL = 100;
+
+    const endGroundRL =
+        startGroundRL - totalDrop;
+
+
+    // PIPE INVERT LEVELS
+
+    const startInvertRL =
+        startGroundRL - depth;
+
+    const endInvertRL =
+        endGroundRL - depth;
+
+
+    // =========================================
+    // SVG COORDINATES
+    // =========================================
+
+    const groundStartY = 100;
+
+    const groundEndY =
+        groundStartY +
+        (totalDrop * verticalScale);
+
+
+    const pipeStartY =
+        groundStartY +
+        (depth * verticalScale);
+
+
+    const pipeEndY =
+        groundEndY +
+        (depth * verticalScale);
+
+
+    // =========================================
+    // BACKGROUND GRID
+    // =========================================
+
+    for (let i = 0; i < 10; i++) {
+
+        const y =
+            60 + (i * 35);
+
+        svg.innerHTML += `
+            <line
+                x1="60"
+                y1="${y}"
+                x2="1120"
+                y2="${y}"
+                stroke="rgba(255,255,255,0.05)"
+                stroke-width="1"
+            />
+        `;
+
+    }
+
+
+    // =========================================
+    // GROUND PROFILE
+    // =========================================
+
+    svg.innerHTML += `
         <line
             x1="${startX}"
-            y1="${groundY}"
+            y1="${groundStartY}"
             x2="${endX}"
-            y2="${groundY}"
+            y2="${groundEndY}"
             stroke="#22C55E"
-            stroke-width="4"
+            stroke-width="5"
         />
     `;
 
-    svg.innerHTML += groundLine;
 
-
-    // GROUND LABEL
+    // LABEL
 
     svg.innerHTML += `
         <text
             x="${startX}"
-            y="${groundY - 15}"
+            y="${groundStartY - 15}"
             fill="#22C55E"
             font-size="16"
+            font-weight="bold"
         >
-            Ground Level
+            Ground Profile
         </text>
     `;
 
 
     // =========================================
-    // PIPE LINE
+    // PIPE PROFILE
     // =========================================
 
     svg.innerHTML += `
         <line
             x1="${startX}"
-            y1="${pipeY}"
+            y1="${pipeStartY}"
             x2="${endX}"
-            y2="${pipeY}"
+            y2="${pipeEndY}"
             stroke="#38BDF8"
-            stroke-width="8"
+            stroke-width="10"
+            stroke-linecap="round"
         />
     `;
 
@@ -612,9 +682,10 @@ function drawHydraulicProfile(
     svg.innerHTML += `
         <text
             x="${startX}"
-            y="${pipeY + 30}"
+            y="${pipeStartY + 35}"
             fill="#38BDF8"
             font-size="16"
+            font-weight="bold"
         >
             Pipe Invert
         </text>
@@ -628,30 +699,79 @@ function drawHydraulicProfile(
     const mhCount =
         parseInt(manholes);
 
-
-    const spacing =
-        (endX - startX) /
-        (mhCount - 1);
+    const mhSpacing =
+        profileWidth / (mhCount - 1);
 
 
-    for (
-        let i = 0;
-        i < mhCount;
-        i++
-    ) {
+    for (let i = 0; i < mhCount; i++) {
 
         const x =
-            startX + (i * spacing);
+            startX + (i * mhSpacing);
 
+
+        // INTERPOLATION
+
+        const ratio =
+            i / (mhCount - 1);
+
+
+        const currentGroundY =
+            groundStartY +
+            (
+                (groundEndY - groundStartY)
+                * ratio
+            );
+
+
+        const currentPipeY =
+            pipeStartY +
+            (
+                (pipeEndY - pipeStartY)
+                * ratio
+            );
+
+
+        // MANHOLE SHAFT
 
         svg.innerHTML += `
             <rect
                 x="${x - 8}"
-                y="${groundY}"
+                y="${currentGroundY}"
                 width="16"
-                height="${pipeY - groundY}"
+                height="${
+                    currentPipeY -
+                    currentGroundY
+                }"
                 fill="#CBD5E1"
+                rx="2"
             />
+        `;
+
+
+        // COVER SLAB
+
+        svg.innerHTML += `
+            <rect
+                x="${x - 14}"
+                y="${currentGroundY - 6}"
+                width="28"
+                height="6"
+                fill="#94A3B8"
+            />
+        `;
+
+
+        // MANHOLE LABEL
+
+        svg.innerHTML += `
+            <text
+                x="${x - 12}"
+                y="${currentGroundY - 12}"
+                fill="#E2E8F0"
+                font-size="11"
+            >
+                MH${i + 1}
+            </text>
         `;
 
     }
@@ -666,49 +786,68 @@ function drawHydraulicProfile(
         "No Station"
     ) {
 
+        const wellX =
+            endX + 60;
+
+        const wellTop =
+            pipeEndY - 120;
+
+        const wellHeight =
+            160;
+
+
+        // WELL STRUCTURE
+
         svg.innerHTML += `
             <rect
-                x="${endX + 40}"
-                y="${pipeY - 80}"
-                width="70"
-                height="120"
+                x="${wellX}"
+                y="${wellTop}"
+                width="90"
+                height="${wellHeight}"
                 fill="#1E293B"
                 stroke="#F59E0B"
-                stroke-width="4"
+                stroke-width="5"
+                rx="4"
             />
         `;
 
 
-        // LABEL
+        // WATER LEVEL
+
+        svg.innerHTML += `
+            <rect
+                x="${wellX + 4}"
+                y="${wellTop + 90}"
+                width="82"
+                height="66"
+                fill="rgba(56,189,248,0.45)"
+            />
+        `;
+
+
+        // TITLE
 
         svg.innerHTML += `
             <text
-                x="${endX + 25}"
-                y="${pipeY - 95}"
+                x="${wellX - 10}"
+                y="${wellTop - 18}"
                 fill="#F59E0B"
-                font-size="16"
+                font-size="18"
+                font-weight="bold"
             >
                 Wet Well
             </text>
         `;
 
-    }
 
-
-    // =========================================
-    // ALARM LEVEL
-    // =========================================
-
-    if (
-        levelData.alarm !== "--"
-    ) {
+        // ALARM LEVEL
 
         svg.innerHTML += `
             <line
-                x1="${endX + 40}"
-                y1="${pipeY - 30}"
-                x2="${endX + 110}"
-                y2="${pipeY - 30}"
+                x1="${wellX}"
+                y1="${wellTop + 50}"
+                x2="${wellX + 90}"
+                y2="${wellTop + 50}"
                 stroke="#EF4444"
                 stroke-width="3"
                 stroke-dasharray="6"
@@ -718,8 +857,8 @@ function drawHydraulicProfile(
 
         svg.innerHTML += `
             <text
-                x="${endX + 120}"
-                y="${pipeY - 25}"
+                x="${wellX + 100}"
+                y="${wellTop + 55}"
                 fill="#EF4444"
                 font-size="14"
             >
@@ -727,23 +866,15 @@ function drawHydraulicProfile(
             </text>
         `;
 
-    }
 
-
-    // =========================================
-    // OVERFLOW LEVEL
-    // =========================================
-
-    if (
-        levelData.overflow !== "--"
-    ) {
+        // OVERFLOW LEVEL
 
         svg.innerHTML += `
             <line
-                x1="${endX + 40}"
-                y1="${pipeY - 60}"
-                x2="${endX + 110}"
-                y2="${pipeY - 60}"
+                x1="${wellX}"
+                y1="${wellTop + 20}"
+                x2="${wellX + 90}"
+                y2="${wellTop + 20}"
                 stroke="#DC2626"
                 stroke-width="3"
             />
@@ -752,8 +883,8 @@ function drawHydraulicProfile(
 
         svg.innerHTML += `
             <text
-                x="${endX + 120}"
-                y="${pipeY - 55}"
+                x="${wellX + 100}"
+                y="${wellTop + 25}"
                 fill="#DC2626"
                 font-size="14"
             >
@@ -762,6 +893,49 @@ function drawHydraulicProfile(
         `;
 
     }
+
+
+    // =========================================
+    // ENGINEERING INFO
+    // =========================================
+
+    svg.innerHTML += `
+        <text
+            x="80"
+            y="370"
+            fill="#94A3B8"
+            font-size="15"
+        >
+            Pipe Length:
+            ${pipeLength} m
+        </text>
+    `;
+
+
+    svg.innerHTML += `
+        <text
+            x="350"
+            y="370"
+            fill="#94A3B8"
+            font-size="15"
+        >
+            Estimated Depth:
+            ${depth.toFixed(2)} m
+        </text>
+    `;
+
+
+    svg.innerHTML += `
+        <text
+            x="700"
+            y="370"
+            fill="#94A3B8"
+            font-size="15"
+        >
+            Manholes:
+            ${mhCount}
+        </text>
+    `;
 
 }
 
