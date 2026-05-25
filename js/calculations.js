@@ -792,3 +792,125 @@ function determinePumpStationSize(
     }
 
 }
+
+
+// ============================================
+// PUMP STATION LOCATION LOGIC
+// ============================================
+
+function determinePumpLocation(
+    networkType,
+    slope,
+    pipeLength,
+    depth,
+    stationRequired
+) {
+
+    // NO STATION
+
+    if (
+        stationRequired ===
+        "Not Required"
+    ) {
+
+        return {
+
+            location: "--",
+
+            reason:
+                "Gravity flow is sufficient."
+
+        };
+
+    }
+
+
+    // CONVERT VALUES
+
+    slope = Number(slope);
+
+    pipeLength =
+        Number(pipeLength);
+
+
+    // DEEP EXCAVATION
+
+    if (depth > 6) {
+
+        return {
+
+            location:
+                "Deep Sump Zone",
+
+            reason:
+                "Excessive excavation depth."
+
+        };
+
+    }
+
+
+    // FLAT TERRAIN
+
+    if (slope < 0.5) {
+
+        return {
+
+            location:
+                "Main Low Point",
+
+            reason:
+                "Insufficient gravity slope."
+
+        };
+
+    }
+
+
+    // LONG COLLECTOR
+
+    if (pipeLength > 1000) {
+
+        return {
+
+            location:
+                "End of Collector",
+
+            reason:
+                "Long transmission distance."
+
+        };
+
+    }
+
+
+    // MAIN TRUNK
+
+    if (networkType === "main") {
+
+        return {
+
+            location:
+                "Central Trunk Station",
+
+            reason:
+                "Main trunk flow collection."
+
+        };
+
+    }
+
+
+    // DEFAULT
+
+    return {
+
+        location:
+            "Network Outlet",
+
+        reason:
+            "Standard drainage collection."
+
+    };
+
+}
