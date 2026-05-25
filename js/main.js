@@ -501,3 +501,249 @@ updateSystemStatus(
 });
 
 
+// ============================================
+// HYDRAULIC PROFILE DRAWING
+// ============================================
+
+function drawHydraulicProfile(
+    pipeLength,
+    depth,
+    manholes,
+    stationType,
+    levelData
+) {
+
+    // SVG ELEMENT
+
+    const svg =
+        document.getElementById(
+            "profileSVG"
+        );
+
+
+    // CLEAR OLD DRAWING
+
+    svg.innerHTML = "";
+
+
+    // BASIC DIMENSIONS
+
+    const width = 1100;
+
+    const startX = 80;
+
+    const endX = 1000;
+
+    const groundY = 100;
+
+    const pipeY =
+        groundY + (depth * 20);
+
+
+    // =========================================
+    // GROUND LINE
+    // =========================================
+
+    const groundLine = `
+        <line
+            x1="${startX}"
+            y1="${groundY}"
+            x2="${endX}"
+            y2="${groundY}"
+            stroke="#22C55E"
+            stroke-width="4"
+        />
+    `;
+
+    svg.innerHTML += groundLine;
+
+
+    // GROUND LABEL
+
+    svg.innerHTML += `
+        <text
+            x="${startX}"
+            y="${groundY - 15}"
+            fill="#22C55E"
+            font-size="16"
+        >
+            Ground Level
+        </text>
+    `;
+
+
+    // =========================================
+    // PIPE LINE
+    // =========================================
+
+    svg.innerHTML += `
+        <line
+            x1="${startX}"
+            y1="${pipeY}"
+            x2="${endX}"
+            y2="${pipeY}"
+            stroke="#38BDF8"
+            stroke-width="8"
+        />
+    `;
+
+
+    // PIPE LABEL
+
+    svg.innerHTML += `
+        <text
+            x="${startX}"
+            y="${pipeY + 30}"
+            fill="#38BDF8"
+            font-size="16"
+        >
+            Pipe Invert
+        </text>
+    `;
+
+
+    // =========================================
+    // MANHOLES
+    // =========================================
+
+    const mhCount =
+        parseInt(manholes);
+
+
+    const spacing =
+        (endX - startX) /
+        (mhCount - 1);
+
+
+    for (
+        let i = 0;
+        i < mhCount;
+        i++
+    ) {
+
+        const x =
+            startX + (i * spacing);
+
+
+        svg.innerHTML += `
+            <rect
+                x="${x - 8}"
+                y="${groundY}"
+                width="16"
+                height="${pipeY - groundY}"
+                fill="#CBD5E1"
+            />
+        `;
+
+    }
+
+
+    // =========================================
+    // WET WELL
+    // =========================================
+
+    if (
+        stationType !==
+        "No Station"
+    ) {
+
+        svg.innerHTML += `
+            <rect
+                x="${endX + 40}"
+                y="${pipeY - 80}"
+                width="70"
+                height="120"
+                fill="#1E293B"
+                stroke="#F59E0B"
+                stroke-width="4"
+            />
+        `;
+
+
+        // LABEL
+
+        svg.innerHTML += `
+            <text
+                x="${endX + 25}"
+                y="${pipeY - 95}"
+                fill="#F59E0B"
+                font-size="16"
+            >
+                Wet Well
+            </text>
+        `;
+
+    }
+
+
+    // =========================================
+    // ALARM LEVEL
+    // =========================================
+
+    if (
+        levelData.alarm !== "--"
+    ) {
+
+        svg.innerHTML += `
+            <line
+                x1="${endX + 40}"
+                y1="${pipeY - 30}"
+                x2="${endX + 110}"
+                y2="${pipeY - 30}"
+                stroke="#EF4444"
+                stroke-width="3"
+                stroke-dasharray="6"
+            />
+        `;
+
+
+        svg.innerHTML += `
+            <text
+                x="${endX + 120}"
+                y="${pipeY - 25}"
+                fill="#EF4444"
+                font-size="14"
+            >
+                Alarm
+            </text>
+        `;
+
+    }
+
+
+    // =========================================
+    // OVERFLOW LEVEL
+    // =========================================
+
+    if (
+        levelData.overflow !== "--"
+    ) {
+
+        svg.innerHTML += `
+            <line
+                x1="${endX + 40}"
+                y1="${pipeY - 60}"
+                x2="${endX + 110}"
+                y2="${pipeY - 60}"
+                stroke="#DC2626"
+                stroke-width="3"
+            />
+        `;
+
+
+        svg.innerHTML += `
+            <text
+                x="${endX + 120}"
+                y="${pipeY - 55}"
+                fill="#DC2626"
+                font-size="14"
+            >
+                Overflow
+            </text>
+        `;
+
+    }
+
+}
+
+
