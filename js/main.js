@@ -747,3 +747,12 @@ function drawHydraulicProfile(
 }
 
 
+// DRAW HYDRAULIC PROFILE
+
+drawHydraulicProfile(
+    pipeLength,
+    depth,
+    manholeCount,
+    stationData.type,
+    levelData
+);
