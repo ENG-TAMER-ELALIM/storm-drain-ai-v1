@@ -748,10 +748,9 @@ function drawHydraulicProfile(
 
 
 // DRAW HYDRAULIC PROFILE
-
 drawHydraulicProfile(
     pipeLength,
-    depth,
+    estimatedDepth,
     manholeCount,
     stationData.type,
     levelData
