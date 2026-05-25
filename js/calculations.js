@@ -572,3 +572,75 @@ function determineManholeType(
     return "Standard MH";
 
 }
+
+
+// ============================================
+// MANHOLE DEPTH CALCULATION
+// ============================================
+
+function calculateDepth(
+    pipeLength,
+    slope
+) {
+
+    // CONVERT VALUES
+
+    pipeLength = Number(pipeLength);
+
+    slope = Number(slope) / 100;
+
+
+    // DEPTH
+
+    const depth =
+        pipeLength * slope;
+
+
+    return depth;
+
+}
+
+
+
+// ============================================
+// DEPTH CLASSIFICATION
+// ============================================
+
+function classifyDepth(depth) {
+
+    // SHALLOW
+
+    if (depth < 1.5) {
+
+        return "Shallow MH";
+
+    }
+
+
+    // STANDARD
+
+    else if (depth <= 4) {
+
+        return "Standard MH";
+
+    }
+
+
+    // DEEP
+
+    else if (depth <= 6) {
+
+        return "Deep MH";
+
+    }
+
+
+    // CRITICAL
+
+    else {
+
+        return "Critical Deep Structure";
+
+    }
+
+}
