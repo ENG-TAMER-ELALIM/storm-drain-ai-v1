@@ -368,6 +368,37 @@ document.getElementById(
     "placementReasonResult"
 ).innerText =
 locationData.reason;
+
+    // DETERMINE STORAGE LOGIC
+
+const storageData =
+    determineEmergencyStorage(
+        stationData.type
+    );
+
+
+// DISPLAY STORAGE
+
+document.getElementById(
+    "storageResult"
+).innerText =
+storageData.storage;
+
+
+// DISPLAY CYCLE
+
+document.getElementById(
+    "cycleResult"
+).innerText =
+storageData.cycle;
+
+
+// DISPLAY OPERATION
+
+document.getElementById(
+    "operationResult"
+).innerText =
+storageData.operation;
     
     // GENERATE RECOMMENDATIONS
 
