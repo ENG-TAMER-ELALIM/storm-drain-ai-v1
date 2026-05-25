@@ -154,6 +154,22 @@ document.getElementById("manholeDiameterResult")
 .innerText =
 manholeDiameter;
 
+    // DETERMINE MANHOLE TYPE
+
+const manholeType =
+    determineManholeType(
+        networkType,
+        pipeDiameter,
+        flow
+    );
+
+
+// DISPLAY RESULT
+
+document.getElementById("manholeTypeResult")
+.innerText =
+manholeType;
+
 
     // CALCULATE CATCH BASINS
 
