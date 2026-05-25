@@ -492,3 +492,67 @@ button:hover {
     white-space: pre-line;
 
 }
+
+
+/* =========================================
+   DYNAMIC STATUS COLORS
+========================================= */
+
+
+/* SAFE */
+
+.status-safe {
+
+    background: #22C55E;
+
+    color: white;
+
+}
+
+
+/* WARNING */
+
+.status-warning {
+
+    background: #F59E0B;
+
+    color: white;
+
+}
+
+
+/* CRITICAL */
+
+.status-critical {
+
+    background: #EF4444;
+
+    color: white;
+
+}
+
+
+/* KPI STATES */
+
+.kpi-safe {
+
+    border:
+        1px solid rgba(34,197,94,0.4);
+
+}
+
+
+.kpi-warning {
+
+    border:
+        1px solid rgba(245,158,11,0.4);
+
+}
+
+
+.kpi-critical {
+
+    border:
+        1px solid rgba(239,68,68,0.4);
+
+}
