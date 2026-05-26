@@ -826,23 +826,47 @@ svg.innerHTML += `
     />
 `;
 
-    // =========================================
-// HGL LINE
+  // =========================================
+// REAL DYNAMIC HGL
 // =========================================
+
+
+// HGL OFFSET ABOVE INVERT
+
+const hglOffset =
+    pipeThickness *
+    (0.15 + loadingRatio * 0.65);
+
+
+// REAL HGL POSITION
+
+const realisticHGLStartY =
+    invertStartY - hglOffset;
+
+const realisticHGLEndY =
+    invertEndY - hglOffset;
+
+
+// HGL COLOR
+
+const hglColor =
+    surcharge
+        ? "#EF4444"
+        : "#60A5FA";
+
+
+// DRAW HGL
 
 svg.innerHTML += `
     <line
         x1="${startX}"
-        y1="${finalHGLStartY}"
+        y1="${realisticHGLStartY}"
         x2="${endX}"
-       y2="${finalHGLEndY}"
-        stroke="${
-    surcharge
-        ? '#EF4444'
-        : '#60A5FA'
-}"
+        y2="${realisticHGLEndY}"
+        stroke="${hglColor}"
         stroke-width="4"
         stroke-dasharray="14 8"
+        opacity="0.95"
     />
 `;
 
@@ -851,9 +875,9 @@ svg.innerHTML += `
 
 svg.innerHTML += `
     <text
-        x="${startX + 40}"
-        y="${hglStartY - 10}"
-        fill="#60A5FA"
+        x="${startX + 30}"
+        y="${realisticHGLStartY - 12}"
+        fill="${hglColor}"
         font-size="15"
         font-weight="bold"
     >
