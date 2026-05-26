@@ -803,8 +803,8 @@ svg.innerHTML += `
 svg.innerHTML += `
     <polygon
         points="
-            ${startX},${limitedHGLStartY}
-            ${endX},${limitedHGLEndY}
+            ${startX},${realisticHGLStartY}
+            ${endX},${realisticHGLEndY}
             ${endX},${invertEndY}
             ${startX},${invertStartY}
         "
