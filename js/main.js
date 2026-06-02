@@ -826,6 +826,36 @@ svg.innerHTML += `
     />
 `;
 
+    // =========================================
+// FLOW DIRECTION ARROWS
+// =========================================
+
+const arrowCount = 8;
+
+for (let i = 1; i <= arrowCount; i++) {
+
+    const x =
+        startX +
+        ((endX - startX) / (arrowCount + 1)) * i;
+
+    const y =
+        realisticHGLStartY +
+        ((realisticHGLEndY - realisticHGLStartY) /
+        (arrowCount + 1)) * i;
+
+    svg.innerHTML += `
+        <polygon
+            points="
+                ${x},${y}
+                ${x-10},${y-5}
+                ${x-10},${y+5}
+            "
+            fill="#7DD3FC"
+            opacity="0.9"
+        />
+    `;
+}
+
   // =========================================
 // REAL DYNAMIC HGL
 // =========================================
