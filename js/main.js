@@ -327,11 +327,7 @@ const stationData =
         pumpData.station
     );
 
-    const levelData =
-    calculatePumpLevels(
-        flow
-    );
-
+ 
     console.log(levelData);
 
 
@@ -416,6 +412,8 @@ const levelData =
     );
 
 
+    console.log(levelData);
+    
 // DISPLAY START LEVEL
 
 document.getElementById(
