@@ -1203,6 +1203,84 @@ for (let i = 1; i <= arrowCount; i++) {
 }
 
 
+drawNetworkLayout(
+
+    networkType,
+
+    manholeData.count,
+
+    catchBasinData.count,
+
+    stationData.type
+
+);
+
+
+function drawNetworkLayout(
+    networkType,
+    manholes,
+    catchBasins,
+    stationType
+) {
+
+    const svg =
+        document.getElementById(
+            "networkSVG"
+        );
+
+    svg.innerHTML = "";
+
+    const startX = 120;
+    const startY = 250;
+
+    const spacing = 90;
+
+    // MAIN PIPE
+
+    svg.innerHTML += `
+        <line
+            x1="${startX}"
+            y1="${startY}"
+            x2="${startX + (manholes-1)*spacing}"
+            y2="${startY}"
+            stroke="#38BDF8"
+            stroke-width="8"
+        />
+    `;
+
+    // MANHOLES
+
+    for(let i=0;i<manholes;i++){
+
+        const x =
+            startX +
+            (i*spacing);
+
+        svg.innerHTML += `
+            <circle
+                cx="${x}"
+                cy="${startY}"
+                r="16"
+                fill="#CBD5E1"
+                stroke="#475569"
+                stroke-width="3"
+            />
+        `;
+
+        svg.innerHTML += `
+            <text
+                x="${x-12}"
+                y="${startY-25}"
+                fill="white"
+                font-size="12"
+            >
+                MH${i+1}
+            </text>
+        `;
+    }
+
+}
+
 
 // ============================================
 // SYSTEM STATUS UPDATE
