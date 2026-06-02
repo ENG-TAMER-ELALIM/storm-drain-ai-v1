@@ -496,7 +496,7 @@ recommendation;
 // DRAW HYDRAULIC PROFILE
 // ============================================
 
-ddrawHydraulicProfile(
+drawHydraulicProfile(
 
     pipeLength,
 
