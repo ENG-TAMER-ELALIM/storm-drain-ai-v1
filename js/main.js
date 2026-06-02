@@ -826,6 +826,28 @@ svg.innerHTML += `
     />
 `;
 
+
+  // =========================================
+// REAL DYNAMIC HGL
+// =========================================
+
+
+// HGL OFFSET ABOVE INVERT
+
+const hglOffset =
+    pipeThickness *
+    (0.15 + loadingRatio * 0.65);
+
+
+// REAL HGL POSITION
+
+const realisticHGLStartY =
+    invertStartY - hglOffset;
+
+const realisticHGLEndY =
+    invertEndY - hglOffset;
+
+    
     // =========================================
 // FLOW DIRECTION ARROWS
 // =========================================
@@ -855,26 +877,6 @@ for (let i = 1; i <= arrowCount; i++) {
         />
     `;
 }
-
-  // =========================================
-// REAL DYNAMIC HGL
-// =========================================
-
-
-// HGL OFFSET ABOVE INVERT
-
-const hglOffset =
-    pipeThickness *
-    (0.15 + loadingRatio * 0.65);
-
-
-// REAL HGL POSITION
-
-const realisticHGLStartY =
-    invertStartY - hglOffset;
-
-const realisticHGLEndY =
-    invertEndY - hglOffset;
 
 
 // HGL COLOR
