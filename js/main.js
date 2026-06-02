@@ -327,6 +327,13 @@ const stationData =
         pumpData.station
     );
 
+    const levelData =
+    calculatePumpLevels(
+        flow
+    );
+
+    console.log(levelData);
+
 
 // DISPLAY STATION TYPE
 
