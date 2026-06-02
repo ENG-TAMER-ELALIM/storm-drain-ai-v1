@@ -915,37 +915,7 @@ function determinePumpLocation(
 
 }
 
-function calculatePumpLevels(flow) {
 
-    const sumpLevel = 0.50;
-
-    const stopLevel = 1.00;
-
-    const startPump1 = 2.00;
-
-    const startPump2 = 3.00;
-
-    const alarmLevel = 4.00;
-
-    const overflowLevel = 4.50;
-
-    return {
-
-        sumpLevel,
-
-        stopLevel,
-
-        startPump1,
-
-        startPump2,
-
-        alarmLevel,
-
-        overflowLevel
-
-    };
-
-}
 
 // ============================================
 // CATCH BASIN SPACING LOGIC
