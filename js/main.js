@@ -497,20 +497,15 @@ recommendation;
 // ============================================
 
 drawHydraulicProfile(
-
     pipeLength,
-
     estimatedDepth,
-
     manholeData.count,
-
     stationData.type,
-
     levelData,
-
     flow
-
 );
+
+    
     drawNetworkLayout(
 
     networkType,
@@ -539,7 +534,7 @@ updateSystemStatus(
 
 function drawHydraulicProfile(
     pipeLength,
-    estimatedDepth,
+    depth,
     manholes,
     stationType,
     levelData,
