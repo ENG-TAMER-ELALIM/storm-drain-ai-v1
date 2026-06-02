@@ -539,15 +539,10 @@ updateSystemStatus(
 
 function drawHydraulicProfile(
     pipeLength,
-
     estimatedDepth,
-
-    manholeData.count,
-
-    stationData.type,
-
+    manholes,
+    stationType,
     levelData,
-
     flow
 ) {
 
