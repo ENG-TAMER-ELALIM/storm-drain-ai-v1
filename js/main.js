@@ -722,7 +722,7 @@ const invertEndY =
 
 const flowFactor =
     Math.min(
-        levelData.flow / 10,
+       flow / 10,
         1.4
     );
 
