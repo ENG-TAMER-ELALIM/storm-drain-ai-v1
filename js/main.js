@@ -496,7 +496,7 @@ recommendation;
 // DRAW HYDRAULIC PROFILE
 // ============================================
 
-drawHydraulicProfile(
+ddrawHydraulicProfile(
 
     pipeLength,
 
@@ -506,17 +506,18 @@ drawHydraulicProfile(
 
     stationData.type,
 
-    levelData
+    levelData,
+
+    flow
 
 );
-
     drawNetworkLayout(
 
     networkType,
 
     manholeData.count,
 
-    catchBasinData.count,
+   basinData.count,
 
     stationData.type
 
@@ -538,10 +539,16 @@ updateSystemStatus(
 
 function drawHydraulicProfile(
     pipeLength,
-    depth,
-    manholes,
-    stationType,
-    levelData
+
+    estimatedDepth,
+
+    manholeData.count,
+
+    stationData.type,
+
+    levelData,
+
+    flow
 ) {
 
     // SVG ELEMENT
@@ -790,6 +797,37 @@ const limitedHGLEndY =
 const surcharge =
     loadingRatio > 0.9;
 
+     // =========================================
+// REAL DYNAMIC HGL
+// =========================================
+
+
+// HGL OFFSET ABOVE INVERT
+
+const hglOffset =
+    pipeThickness *
+    (0.15 + loadingRatio * 0.65);
+
+
+// REAL HGL POSITION
+
+const realisticHGLStartY =
+    invertStartY - hglOffset;
+
+const realisticHGLEndY =
+    invertEndY - hglOffset;
+
+    
+   
+
+// HGL COLOR
+
+const hglColor =
+    surcharge
+        ? "#EF4444"
+        : "#60A5FA";
+
+
 
 // PIPE BODY
 
@@ -838,36 +876,6 @@ svg.innerHTML += `
     />
 `;
 
-
-  // =========================================
-// REAL DYNAMIC HGL
-// =========================================
-
-
-// HGL OFFSET ABOVE INVERT
-
-const hglOffset =
-    pipeThickness *
-    (0.15 + loadingRatio * 0.65);
-
-
-// REAL HGL POSITION
-
-const realisticHGLStartY =
-    invertStartY - hglOffset;
-
-const realisticHGLEndY =
-    invertEndY - hglOffset;
-
-    
-   
-
-// HGL COLOR
-
-const hglColor =
-    surcharge
-        ? "#EF4444"
-        : "#60A5FA";
 
 
 // DRAW HGL
