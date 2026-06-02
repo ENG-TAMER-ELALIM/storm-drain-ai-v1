@@ -677,7 +677,12 @@ function drawNetworkLayout(
     const startX = 120;
     const startY = 250;
 
-    const spacing = 90;
+    const spacing =
+    Math.min(
+        90,
+        availableWidth /
+        (manholes + 1)
+    );
 
     // MAIN PIPE
 
