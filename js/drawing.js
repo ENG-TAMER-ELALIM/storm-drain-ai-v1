@@ -186,6 +186,9 @@ const flowFactor =
         1.4
     );
 
+console.log("Flow =", flow);
+console.log("Flow Factor =", flowFactor);
+
 
 // PIPE LOADING RATIO
 
