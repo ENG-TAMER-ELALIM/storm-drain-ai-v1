@@ -182,7 +182,7 @@ const invertEndY =
 
 const flowFactor =
     Math.min(
-       flow / 10,
+        flow / 10,
         1.4
     );
 
