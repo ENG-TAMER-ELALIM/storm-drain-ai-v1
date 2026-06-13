@@ -328,7 +328,7 @@ const stationData =
     );
 
  
-    console.log(levelData);
+   
 
 
 // DISPLAY STATION TYPE
