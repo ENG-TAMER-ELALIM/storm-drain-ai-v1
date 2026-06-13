@@ -655,6 +655,65 @@ svg.innerHTML += `
 
 }
 
+// =====================================
+// NETWORK GEOMETRY ENGINE
+// =====================================
+
+function buildNetworkGeometry(manholes){
+
+    const svgWidth = 1200;
+
+    const leftMargin = 120;
+
+    const rightMargin = 280;
+
+    const startY = 250;
+
+    const availableWidth =
+        svgWidth -
+        leftMargin -
+        rightMargin;
+
+    const spacing =
+        availableWidth /
+        (manholes - 1);
+
+    const nodes = [];
+
+    for(let i = 0; i < manholes; i++){
+
+        nodes.push({
+
+            id: i + 1,
+
+            x:
+                leftMargin +
+                (i * spacing),
+
+            y:
+                startY
+
+        });
+
+    }
+
+    return {
+
+        svgWidth,
+
+        leftMargin,
+
+        rightMargin,
+
+        startY,
+
+        spacing,
+
+        nodes
+
+    };
+
+}
 
 
 // ============================================
