@@ -1331,8 +1331,13 @@ const availableWidth =
     svgWidth -
     leftMargin -
     rightMargin;
+    
+const spacing =
+    manholes > 1
+    ? availableWidth / (manholes - 1)
+    : availableWidth;
 
-manholes = parseInt(manholes);
+
 
     // =====================================
 // MAIN PIPE
@@ -1341,6 +1346,17 @@ manholes = parseInt(manholes);
 const endX =
     startX +
     ((manholes - 1) * spacing);
+    
+
+    console.log(
+    "Network Layout OK",
+    {
+        manholes,
+        spacing,
+        endX
+    }
+);
+    
 
 svg.innerHTML += `
     <line
@@ -1497,10 +1513,7 @@ for(let i=0;i<nodes.length-1;i++){
 // =====================================
 
 const pumpX =
-    startX +
-    ((manholes - 1) * spacing) +
-    120;
-
+    endX + 80;
 const pumpY =
     startY;
 
