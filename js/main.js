@@ -1545,6 +1545,22 @@ const pumpX =
 const pumpY =
     startY;
 
+    // =====================================
+// CONNECTION TO WET WELL
+// =====================================
+
+svg.innerHTML += `
+<line
+    x1="${nodes[nodes.length - 1].x}"
+    y1="${startY}"
+    x2="${pumpX}"
+    y2="${startY}"
+    stroke="#38BDF8"
+    stroke-width="8"
+    stroke-linecap="round"
+/>
+`;
+
 
 // Wet Well
 
