@@ -961,90 +961,120 @@ svg.innerHTML += `
 `;
 
      
+// =========================================
+// MANHOLES
+// =========================================
 
-    // =========================================
-    // MANHOLES
-    // =========================================
+const mhCount = parseInt(manholes);
 
-    const mhCount =
-        parseInt(manholes);
+const mhSpacing =
+    profileWidth / (mhCount - 1);
 
-    const mhSpacing =
-        profileWidth / (mhCount - 1);
+for (let i = 0; i < mhCount; i++) {
 
+    const x =
+        startX + (i * mhSpacing);
 
-    for (let i = 0; i < mhCount; i++) {
+    const ratio =
+        i / (mhCount - 1);
 
-        const x =
-            startX + (i * mhSpacing);
+    const currentGroundY =
+        groundStartY +
+        ((groundEndY - groundStartY) * ratio);
 
+    const currentPipeY =
+        pipeStartY +
+        ((pipeEndY - pipeStartY) * ratio);
 
-        // INTERPOLATION
+    // =====================================
+    // RL CALCULATIONS
+    // =====================================
 
-        const ratio =
-            i / (mhCount - 1);
+    const topRL =
+        99.00;
 
+    const groundRL =
+        topRL - (ratio * 3.0);
 
-        const currentGroundY =
-            groundStartY +
-            (
-                (groundEndY - groundStartY)
-                * ratio
-            );
+    const invertRL =
+        groundRL - 2.20;
 
+    // =====================================
+    // MANHOLE SHAFT
+    // =====================================
 
-        const currentPipeY =
-            pipeStartY +
-            (
-                (pipeEndY - pipeStartY)
-                * ratio
-            );
+    svg.innerHTML += `
+        <rect
+            x="${x - 8}"
+            y="${currentGroundY}"
+            width="16"
+            height="${currentPipeY - currentGroundY}"
+            fill="#CBD5E1"
+            rx="2"
+        />
+    `;
 
+    // =====================================
+    // COVER SLAB
+    // =====================================
 
-        // MANHOLE SHAFT
+    svg.innerHTML += `
+        <rect
+            x="${x - 14}"
+            y="${currentGroundY - 6}"
+            width="28"
+            height="6"
+            fill="#94A3B8"
+        />
+    `;
 
-        svg.innerHTML += `
-            <rect
-                x="${x - 8}"
-                y="${currentGroundY}"
-                width="16"
-                height="${
-                    currentPipeY -
-                    currentGroundY
-                }"
-                fill="#CBD5E1"
-                rx="2"
-            />
-        `;
+    // =====================================
+    // MANHOLE ID
+    // =====================================
 
+    svg.innerHTML += `
+        <text
+            x="${x - 12}"
+            y="${currentGroundY - 14}"
+            fill="#FFFFFF"
+            font-size="11"
+            font-weight="bold"
+        >
+            MH${i + 1}
+        </text>
+    `;
 
-        // COVER SLAB
+    // =====================================
+    // GROUND RL
+    // =====================================
 
-        svg.innerHTML += `
-            <rect
-                x="${x - 14}"
-                y="${currentGroundY - 6}"
-                width="28"
-                height="6"
-                fill="#94A3B8"
-            />
-        `;
+    svg.innerHTML += `
+        <text
+            x="${x - 18}"
+            y="${currentGroundY + 18}"
+            fill="#22C55E"
+            font-size="9"
+        >
+            GL ${groundRL.toFixed(2)}
+        </text>
+    `;
 
+    // =====================================
+    // INVERT RL
+    // =====================================
 
-        // MANHOLE LABEL
+    svg.innerHTML += `
+        <text
+            x="${x - 18}"
+            y="${currentGroundY + 32}"
+            fill="#38BDF8"
+            font-size="9"
+        >
+            INV ${invertRL.toFixed(2)}
+        </text>
+    `;
 
-        svg.innerHTML += `
-            <text
-                x="${x - 12}"
-                y="${currentGroundY - 12}"
-                fill="#E2E8F0"
-                font-size="11"
-            >
-                MH${i + 1}
-            </text>
-        `;
-
-    }
+}
 
 
     // =========================================
