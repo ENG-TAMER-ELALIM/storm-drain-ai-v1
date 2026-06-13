@@ -1422,17 +1422,19 @@ for(let i=0;i<manholes;i++){
     `;
 }
 
-    // =====================================
-// CATCH BASINS
+   // =====================================
+// REALISTIC CATCH BASINS
 // =====================================
 
 for(let i=0;i<nodes.length-1;i++){
 
     const cbX =
-        nodes[i].x + 45;
+        (nodes[i].x + nodes[i+1].x)/2;
 
     const cbY =
-        startY - 90;
+        startY - 110;
+
+    // Catch Basin
 
     svg.innerHTML += `
         <rect
@@ -1446,19 +1448,34 @@ for(let i=0;i<nodes.length-1;i++){
         />
     `;
 
+    // Lateral Connection
+
     svg.innerHTML += `
         <line
             x1="${cbX}"
             y1="${cbY+10}"
-            x2="${cbX}"
-            y2="${startY-18}"
+            x2="${nodes[i+1].x}"
+            y2="${startY}"
             stroke="#94A3B8"
             stroke-width="3"
-            stroke-dasharray="5,5"
+            stroke-dasharray="6,6"
         />
     `;
-}
 
+    // Label
+
+    svg.innerHTML += `
+        <text
+            x="${cbX-12}"
+            y="${cbY-18}"
+            fill="#F59E0B"
+            font-size="10"
+            font-weight="bold"
+        >
+            CB${i+1}
+        </text>
+    `;
+}
 }
 
 
