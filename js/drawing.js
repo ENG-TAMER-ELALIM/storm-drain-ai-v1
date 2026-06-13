@@ -734,67 +734,179 @@ function drawNetworkLayout(
             "networkSVG"
         );
 
+    if (!svg) return;
+
     svg.innerHTML = "";
 
-    const startX = 120;
-    const startY = 250;
+    // =====================================
+    // GEOMETRY
+    // =====================================
 
-    const spacing =
-    Math.min(
-        90,
-        availableWidth /
-        (manholes + 1)
-    );
+    const layout =
+        buildNetworkGeometry(
+            manholes
+        );
 
-    // MAIN PIPE
+    const nodes =
+        layout.nodes;
+
+    const startY =
+        layout.startY;
+
+    const startX =
+        nodes[0].x;
+
+    const endX =
+        nodes[nodes.length - 1].x;
+
+    // =====================================
+    // MAIN TRUNK PIPE
+    // =====================================
 
     svg.innerHTML += `
         <line
             x1="${startX}"
             y1="${startY}"
-            x2="${startX + (manholes-1)*spacing}"
+            x2="${endX}"
             y2="${startY}"
             stroke="#38BDF8"
             stroke-width="8"
+            stroke-linecap="round"
         />
     `;
 
+    // =====================================
+    // FLOW DIRECTION ARROWS
+    // =====================================
+
+    for (let i = 0; i < nodes.length - 1; i++) {
+
+        const arrowX =
+            (
+                nodes[i].x +
+                nodes[i + 1].x
+            ) / 2;
+
+        svg.innerHTML += `
+            <polygon
+                points="
+                    ${arrowX},${startY - 8}
+                    ${arrowX + 18},${startY}
+                    ${arrowX},${startY + 8}
+                "
+                fill="#22C55E"
+            />
+        `;
+    }
+
+    // =====================================
+    // FLOW LABEL
+    // =====================================
+
+    svg.innerHTML += `
+        <text
+            x="${startX + 250}"
+            y="${startY - 50}"
+            fill="#22C55E"
+            font-size="16"
+            font-weight="bold"
+        >
+            Flow Direction →
+        </text>
+    `;
+
+    // =====================================
     // MANHOLES
+    // =====================================
 
-    for(let i=0;i<manholes;i++){
-
-        const x =
-            startX +
-            (i*spacing);
+    nodes.forEach((node, index) => {
 
         svg.innerHTML += `
             <circle
-                cx="${x}"
-                cy="${startY}"
-                r="16"
+                cx="${node.x}"
+                cy="${node.y}"
+                r="18"
                 fill="#CBD5E1"
                 stroke="#475569"
-                stroke-width="3"
+                stroke-width="4"
+            />
+        `;
+
+        svg.innerHTML += `
+            <circle
+                cx="${node.x}"
+                cy="${node.y}"
+                r="4"
+                fill="#94A3B8"
             />
         `;
 
         svg.innerHTML += `
             <text
-                x="${x-12}"
-                y="${startY-25}"
-                fill="white"
+                x="${node.x - 16}"
+                y="${node.y - 28}"
+                fill="#FFFFFF"
                 font-size="12"
+                font-weight="bold"
             >
-                MH${i+1}
+                MH${index + 1}
+            </text>
+        `;
+    });
+
+    // =====================================
+    // CATCH BASINS
+    // =====================================
+
+    for (let i = 0; i < nodes.length - 1; i++) {
+
+        const cbX =
+            (
+                nodes[i].x +
+                nodes[i + 1].x
+            ) / 2;
+
+        const cbY =
+            startY - 120;
+
+        svg.innerHTML += `
+            <rect
+                x="${cbX - 10}"
+                y="${cbY - 10}"
+                width="20"
+                height="20"
+                fill="#F59E0B"
+                stroke="#FFFFFF"
+                stroke-width="2"
+            />
+        `;
+
+        svg.innerHTML += `
+            <line
+                x1="${cbX}"
+                y1="${cbY + 10}"
+                x2="${nodes[i + 1].x}"
+                y2="${startY}"
+                stroke="#94A3B8"
+                stroke-width="3"
+                stroke-dasharray="6,6"
+            />
+        `;
+
+        svg.innerHTML += `
+            <text
+                x="${cbX - 14}"
+                y="${cbY - 18}"
+                fill="#F59E0B"
+                font-size="11"
+                font-weight="bold"
+            >
+                CB${i + 1}
             </text>
         `;
     }
 
 }
-
-
-
-
 
 // ============================================
 // SYSTEM STATUS UPDATE
