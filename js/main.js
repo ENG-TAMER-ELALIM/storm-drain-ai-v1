@@ -1453,6 +1453,34 @@ for(let i=0;i<manholes;i++){
     `;
 }
 
+    for(let i=0;i<nodes.length-1;i++){
+
+    const pipeX =
+        (nodes[i].x + nodes[i+1].x)/2;
+
+    svg.innerHTML += `
+        <text
+            x="${pipeX-25}"
+            y="${startY+55}"
+            fill="#38BDF8"
+            font-size="10"
+        >
+            DN900
+        </text>
+    `;
+
+    svg.innerHTML += `
+        <text
+            x="${pipeX-20}"
+            y="${startY+70}"
+            fill="#94A3B8"
+            font-size="9"
+        >
+            S=0.70%
+        </text>
+    `;
+}
+
    // =====================================
 // REALISTIC CATCH BASINS
 // =====================================
