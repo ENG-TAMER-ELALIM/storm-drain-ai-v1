@@ -621,28 +621,50 @@ function drawHydraulicProfile(
 
 
     // =========================================
-    // BACKGROUND GRID
-    // =========================================
+// RL GRID SYSTEM
+// =========================================
 
-    for (let i = 0; i < 10; i++) {
+const topRL = 100;
 
-        const y =
-            60 + (i * 35);
+const rlStep = 1;
 
-        svg.innerHTML += `
-            <line
-                x1="60"
-                y1="${y}"
-                x2="1120"
-                y2="${y}"
-                stroke="rgba(255,255,255,0.05)"
-                stroke-width="1"
-            />
-        `;
+const gridCount = 8;
 
-    }
+for (let i = 0; i < gridCount; i++) {
 
+    const rl =
+        topRL - i;
 
+    const y =
+        60 + (i * 45);
+
+    // GRID LINE
+
+    svg.innerHTML += `
+        <line
+            x1="80"
+            y1="${y}"
+            x2="1120"
+            y2="${y}"
+            stroke="rgba(255,255,255,0.08)"
+            stroke-width="1"
+        />
+    `;
+
+    // RL LABEL
+
+    svg.innerHTML += `
+        <text
+            x="20"
+            y="${y + 5}"
+            fill="#94A3B8"
+            font-size="13"
+            font-family="Arial"
+        >
+            ${rl.toFixed(2)}
+        </text>
+    `;
+}
     // =========================================
     // GROUND PROFILE
     // =========================================
