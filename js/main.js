@@ -1049,35 +1049,7 @@ for (let i = 0; i < mhCount; i++) {
         </text>
     `;
 
-    // =====================================
-    // GROUND RL
-    // =====================================
-
-    svg.innerHTML += `
-        <text
-            x="${x - 18}"
-            y="${currentGroundY + 18}"
-            fill="#22C55E"
-            font-size="9"
-        >
-            GL ${groundRL.toFixed(2)}
-        </text>
-    `;
-
-    // =====================================
-    // INVERT RL
-    // =====================================
-
-    svg.innerHTML += `
-        <text
-            x="${x - 18}"
-            y="${currentGroundY + 32}"
-            fill="#38BDF8"
-            font-size="9"
-        >
-            INV ${invertRL.toFixed(2)}
-        </text>
-    `;
+   
 
 }
 
@@ -1085,7 +1057,11 @@ for (let i = 0; i < mhCount; i++) {
 // PROFILE DATA TABLE
 // =========================================
 
-let tableY = 520;
+const tableY =
+    Math.max(
+        pipeEndY,
+        groundEndY
+    ) + 120;
 
 svg.innerHTML += `
 <line
