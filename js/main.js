@@ -1307,6 +1307,9 @@ function drawNetworkLayout(
     stationType
 ) {
 
+    manholes = parseInt(manholes);
+    catchBasins = parseInt(catchBasins);
+
     const svg =
         document.getElementById(
             "networkSVG"
@@ -1314,23 +1317,22 @@ function drawNetworkLayout(
 
     svg.innerHTML = "";
 
-   const startX = leftMargin;
-    const startY = 250;
-
-    cconst svgWidth = 1200;
+   const svgWidth = 1200;
 
 const leftMargin = 120;
 
 const rightMargin = 280;
+
+const startX = leftMargin;
+
+const startY = 250;
 
 const availableWidth =
     svgWidth -
     leftMargin -
     rightMargin;
 
-const spacing =
-    availableWidth /
-    (manholes - 1);
+manholes = parseInt(manholes);
 
     // =====================================
 // MAIN PIPE
