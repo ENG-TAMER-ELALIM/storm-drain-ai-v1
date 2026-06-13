@@ -1314,10 +1314,23 @@ function drawNetworkLayout(
 
     svg.innerHTML = "";
 
-    const startX = 120;
+   const startX = leftMargin;
     const startY = 250;
 
-    const spacing = 90;
+    cconst svgWidth = 1200;
+
+const leftMargin = 120;
+
+const rightMargin = 280;
+
+const availableWidth =
+    svgWidth -
+    leftMargin -
+    rightMargin;
+
+const spacing =
+    availableWidth /
+    (manholes - 1);
 
     // =====================================
 // MAIN PIPE
