@@ -1061,19 +1061,29 @@ const tableY =
     Math.max(
         pipeEndY,
         groundEndY
-    ) + 120;
+    ) + 90;
 
 svg.innerHTML += `
-<line
-    x1="${startX}"
-    y1="${tableY}"
-    x2="${startX + profileWidth}"
-    y2="${tableY}"
-    stroke="#64748B"
-/>
+<text x="40" y="${tableY+15}"
+fill="#FFFFFF"
+font-size="11">
+CHAINAGE
+</text>
+
+<text x="40" y="${tableY+35}"
+fill="#22C55E"
+font-size="11">
+GROUND RL
+</text>
+
+<text x="40" y="${tableY+55}"
+fill="#38BDF8"
+font-size="11">
+INVERT RL
+</text>
 `;
 
-    for (let i = 0; i < mhCount; i++) {
+   for (let i = 0; i < mhCount; i++) {
 
     const x =
         startX + (i * mhSpacing);
@@ -1087,30 +1097,36 @@ svg.innerHTML += `
     const invertRL =
         groundRL - 2.2;
 
+    const chainage =
+        Math.round(
+            ratio * pipeLength
+        );
+
     svg.innerHTML += `
+
     <text
-        x="${x - 10}"
-        y="540"
+        x="${x - 15}"
+        y="${tableY+15}"
         fill="#FFFFFF"
         font-size="10"
     >
-        MH${i+1}
+        ${chainage}
     </text>
 
     <text
-        x="${x - 12}"
-        y="555"
+        x="${x - 15}"
+        y="${tableY+35}"
         fill="#22C55E"
-        font-size="9"
+        font-size="10"
     >
         ${groundRL.toFixed(2)}
     </text>
 
     <text
-        x="${x - 12}"
-        y="570"
+        x="${x - 15}"
+        y="${tableY+55}"
         fill="#38BDF8"
-        font-size="9"
+        font-size="10"
     >
         ${invertRL.toFixed(2)}
     </text>
