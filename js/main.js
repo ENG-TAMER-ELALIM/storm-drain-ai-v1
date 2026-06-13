@@ -1378,36 +1378,49 @@ svg.innerHTML += `
     </text>
 `;
 
-    // MANHOLES
+ // =====================================
+// MANHOLES
+// =====================================
 
-    for(let i=0;i<manholes;i++){
+const nodes = [];
 
-        const x =
-            startX +
-            (i*spacing);
+for(let i=0;i<manholes;i++){
 
-        svg.innerHTML += `
-            <circle
-                cx="${x}"
-                cy="${startY}"
-                r="16"
-                fill="#CBD5E1"
-                stroke="#475569"
-                stroke-width="3"
-            />
-        `;
+    const x =
+        startX +
+        (i * spacing);
 
-        svg.innerHTML += `
-            <text
-                x="${x-12}"
-                y="${startY-25}"
-                fill="white"
-                font-size="12"
-            >
-                MH${i+1}
-            </text>
-        `;
-    }
+    const y =
+        startY;
+
+    nodes.push({
+        x,
+        y
+    });
+
+    svg.innerHTML += `
+        <circle
+            cx="${x}"
+            cy="${y}"
+            r="18"
+            fill="#CBD5E1"
+            stroke="#475569"
+            stroke-width="4"
+        />
+    `;
+
+    svg.innerHTML += `
+        <text
+            x="${x-14}"
+            y="${y-28}"
+            fill="#FFFFFF"
+            font-size="12"
+            font-weight="bold"
+        >
+            MH${i+1}
+        </text>
+    `;
+}
 
 }
 
