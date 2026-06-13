@@ -557,6 +557,11 @@ function drawHydraulicProfile(
 
     svg.innerHTML = "";
 
+    svg.setAttribute(
+    "viewBox",
+    "0 0 1200 700"
+);
+
 
     // =========================================
     // BASIC LAYOUT
