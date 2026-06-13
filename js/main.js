@@ -1319,18 +1319,64 @@ function drawNetworkLayout(
 
     const spacing = 90;
 
-    // MAIN PIPE
+    // =====================================
+// MAIN PIPE
+// =====================================
+
+const endX =
+    startX +
+    ((manholes - 1) * spacing);
+
+svg.innerHTML += `
+    <line
+        x1="${startX}"
+        y1="${startY}"
+        x2="${endX}"
+        y2="${startY}"
+        stroke="#38BDF8"
+        stroke-width="8"
+        stroke-linecap="round"
+    />
+`;
+
+    // =====================================
+// FLOW ARROWS
+// =====================================
+
+for(let i = 0; i < manholes - 1; i++){
+
+    const arrowX =
+        startX +
+        (i * spacing) +
+        (spacing / 2);
 
     svg.innerHTML += `
-        <line
-            x1="${startX}"
-            y1="${startY}"
-            x2="${startX + (manholes-1)*spacing}"
-            y2="${startY}"
-            stroke="#38BDF8"
-            stroke-width="8"
+        <polygon
+            points="
+                ${arrowX},${startY-8}
+                ${arrowX+18},${startY}
+                ${arrowX},${startY+8}
+            "
+            fill="#22C55E"
         />
     `;
+}
+
+    // =====================================
+// FLOW LABEL
+// =====================================
+
+svg.innerHTML += `
+    <text
+        x="${startX + 250}"
+        y="${startY - 40}"
+        fill="#22C55E"
+        font-size="14"
+        font-weight="bold"
+    >
+        Flow Direction →
+    </text>
+`;
 
     // MANHOLES
 
