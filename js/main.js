@@ -1476,6 +1476,143 @@ for(let i=0;i<nodes.length-1;i++){
         </text>
     `;
 }
+
+    // =====================================
+// PUMP STATION
+// =====================================
+
+const pumpX =
+    startX +
+    ((manholes - 1) * spacing) +
+    120;
+
+const pumpY =
+    startY;
+
+
+// Wet Well
+
+svg.innerHTML += `
+<rect
+    x="${pumpX}"
+    y="${pumpY - 45}"
+    width="50"
+    height="90"
+    fill="#1E293B"
+    stroke="#F59E0B"
+    stroke-width="4"
+    rx="6"
+/>
+`;
+
+
+// Water Level
+
+svg.innerHTML += `
+<rect
+    x="${pumpX + 4}"
+    y="${pumpY}"
+    width="42"
+    height="40"
+    fill="#38BDF8"
+    opacity="0.6"
+/>
+`;
+
+
+// Pump Symbol 1
+
+svg.innerHTML += `
+<circle
+    cx="${pumpX + 18}"
+    cy="${pumpY - 12}"
+    r="8"
+    fill="#22C55E"
+/>
+`;
+
+
+// Pump Symbol 2
+
+svg.innerHTML += `
+<circle
+    cx="${pumpX + 34}"
+    cy="${pumpY - 12}"
+    r="8"
+    fill="#22C55E"
+/>
+`;
+
+
+// Title
+
+svg.innerHTML += `
+<text
+    x="${pumpX - 10}"
+    y="${pumpY - 60}"
+    fill="#F59E0B"
+    font-size="14"
+    font-weight="bold"
+>
+    Pump Station
+</text>
+`;
+
+    // =====================================
+// RISING MAIN
+// =====================================
+
+svg.innerHTML += `
+<line
+    x1="${pumpX + 50}"
+    y1="${pumpY - 12}"
+    x2="${pumpX + 170}"
+    y2="${pumpY - 12}"
+    stroke="#22C55E"
+    stroke-width="6"
+/>
+`;
+
+svg.innerHTML += `
+<polygon
+    points="
+    ${pumpX+170},${pumpY-20}
+    ${pumpX+190},${pumpY-12}
+    ${pumpX+170},${pumpY-4}
+    "
+    fill="#22C55E"
+/>
+`;
+
+    // =====================================
+// OUTFALL
+// =====================================
+
+const outfallX =
+    pumpX + 210;
+
+svg.innerHTML += `
+<rect
+    x="${outfallX}"
+    y="${pumpY - 25}"
+    width="35"
+    height="50"
+    fill="#475569"
+    stroke="#FFFFFF"
+    stroke-width="2"
+/>
+`;
+
+svg.innerHTML += `
+<text
+    x="${outfallX - 10}"
+    y="${pumpY - 40}"
+    fill="#FFFFFF"
+    font-size="12"
+>
+    OUTFALL
+</text>
+`;
 }
 
 
