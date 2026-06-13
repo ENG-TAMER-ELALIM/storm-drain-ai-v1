@@ -1076,6 +1076,66 @@ for (let i = 0; i < mhCount; i++) {
 
 }
 
+    // =========================================
+// PROFILE DATA TABLE
+// =========================================
+
+let tableY = 520;
+
+svg.innerHTML += `
+<line
+    x1="${startX}"
+    y1="${tableY}"
+    x2="${startX + profileWidth}"
+    y2="${tableY}"
+    stroke="#64748B"
+/>
+`;
+
+    for (let i = 0; i < mhCount; i++) {
+
+    const x =
+        startX + (i * mhSpacing);
+
+    const ratio =
+        i / (mhCount - 1);
+
+    const groundRL =
+        99 - (ratio * 3);
+
+    const invertRL =
+        groundRL - 2.2;
+
+    svg.innerHTML += `
+    <text
+        x="${x - 10}"
+        y="540"
+        fill="#FFFFFF"
+        font-size="10"
+    >
+        MH${i+1}
+    </text>
+
+    <text
+        x="${x - 12}"
+        y="555"
+        fill="#22C55E"
+        font-size="9"
+    >
+        ${groundRL.toFixed(2)}
+    </text>
+
+    <text
+        x="${x - 12}"
+        y="570"
+        fill="#38BDF8"
+        font-size="9"
+    >
+        ${invertRL.toFixed(2)}
+    </text>
+    `;
+}
+
 
     // =========================================
     // WET WELL
