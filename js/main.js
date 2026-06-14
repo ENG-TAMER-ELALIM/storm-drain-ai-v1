@@ -1606,15 +1606,30 @@ svg.innerHTML += `
 />
 `;
 
+// =====================================
+// ALARM LEVEL
+// =====================================
+
+svg.innerHTML += `
+<line
+    x1="${pumpX + 4}"
+    y1="${pumpY - 24}"
+    x2="${pumpX + 46}"
+    y2="${pumpY - 24}"
+    stroke="#EF4444"
+    stroke-width="2"
+    stroke-dasharray="4,4"
+/>
+`;
+
 svg.innerHTML += `
 <text
-    x="${pumpX + 8}"
-    y="${pumpY - 12}"
-    fill="#22C55E"
-    font-size="8"
-    font-weight="bold"
+    x="${pumpX + 55}"
+    y="${pumpY - 20}"
+    fill="#EF4444"
+    font-size="9"
 >
-    START
+    Alarm
 </text>
 `;
 
