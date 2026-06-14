@@ -560,7 +560,8 @@ button:hover {
 /* SVG CONTAINER */
 
 #profileContainer {
-
+max-height:300px;
+    overflow:hidden;
     width: 100%;
 
     overflow-x: auto;
