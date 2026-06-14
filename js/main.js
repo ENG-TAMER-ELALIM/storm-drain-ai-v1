@@ -1633,6 +1633,32 @@ svg.innerHTML += `
 </text>
 `;
 
+    // =====================================
+// OVERFLOW LEVEL
+// =====================================
+
+svg.innerHTML += `
+<line
+    x1="${pumpX + 4}"
+    y1="${pumpY - 40}"
+    x2="${pumpX + 46}"
+    y2="${pumpY - 40}"
+    stroke="#FF0000"
+    stroke-width="2"
+/>
+`;
+
+svg.innerHTML += `
+<text
+    x="${pumpX + 55}"
+    y="${pumpY - 36}"
+    fill="#FF0000"
+    font-size="9"
+>
+    Overflow
+</text>
+`;
+
 
 // Pump Symbol 1
 
