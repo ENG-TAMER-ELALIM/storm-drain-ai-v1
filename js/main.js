@@ -1608,10 +1608,11 @@ svg.innerHTML += `
 
 svg.innerHTML += `
 <text
-    x="${pumpX + 55}"
-    y="${pumpY - 4}"
+    x="${pumpX + 8}"
+    y="${pumpY - 12}"
     fill="#22C55E"
-    font-size="10"
+    font-size="8"
+    font-weight="bold"
 >
     START
 </text>
