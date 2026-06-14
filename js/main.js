@@ -1591,6 +1591,32 @@ svg.innerHTML += `
 />
 `;
 
+    // =====================================
+// START LEVEL
+// =====================================
+
+svg.innerHTML += `
+<line
+    x1="${pumpX + 4}"
+    y1="${pumpY - 8}"
+    x2="${pumpX + 46}"
+    y2="${pumpY - 8}"
+    stroke="#22C55E"
+    stroke-width="2"
+/>
+`;
+
+svg.innerHTML += `
+<text
+    x="${pumpX + 55}"
+    y="${pumpY - 4}"
+    fill="#22C55E"
+    font-size="10"
+>
+    START
+</text>
+`;
+
 
 // Pump Symbol 1
 
