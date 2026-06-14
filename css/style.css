@@ -98,19 +98,20 @@ body {
 
 /* PANELS */
 
-.input-panel,
-.output-panel {
+.input-panel{
 
-    background: #1e293b;
+    width:280px;
 
-    padding: 25px;
+    min-width:280px;
 
-    border-radius: 15px;
+    background:#1E293B;
 
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    border-right:1px solid #334155;
 
+    padding:15px;
+
+    overflow-y:auto;
 }
-
 
 /* TITLES */
 
@@ -125,25 +126,37 @@ h2 {
 
 /* INPUT GROUP */
 
-.input-group {
+.input-group input,
+.input-group select{
 
-    margin-bottom: 20px;
+    height:32px;
 
+    font-size:12px;
+
+    padding:4px 8px;
+
+    border:1px solid #475569;
+
+    border-radius:4px;
+
+    background:#0F172A;
+
+    color:white;
 }
 
 
 /* LABELS */
 
-label {
+.input-group label{
 
-    display: block;
+    font-size:12px;
 
-    margin-bottom: 8px;
+    color:#CBD5E1;
 
-    color: #cbd5e1;
+    margin-bottom:4px;
 
+    display:block;
 }
-
 
 /* INPUTS */
 
