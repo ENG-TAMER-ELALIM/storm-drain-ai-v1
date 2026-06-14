@@ -717,3 +717,60 @@ button:hover {
 
     color:#38BDF8;
 }
+
+/* ==================================
+   ENGINEERING RESULT TABLES
+================================== */
+
+.engineering-table{
+
+    margin-top:12px;
+
+    padding:12px;
+
+    background:#1E293B;
+
+    border:1px solid #334155;
+
+    border-radius:6px;
+}
+
+.engineering-table h3{
+
+    font-size:16px;
+
+    margin-bottom:10px;
+
+    color:#38BDF8;
+}
+
+.engineering-table .result-item{
+
+    display:grid;
+
+    grid-template-columns:
+        220px
+        1fr;
+
+    min-height:32px;
+
+    align-items:center;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.05);
+
+    font-size:12px;
+}
+
+.engineering-table .result-item span:first-child{
+
+    color:#94A3B8;
+}
+
+.engineering-table .result-item span:last-child{
+
+    color:#E2E8F0;
+
+    font-weight:600;
+}
